@@ -22,7 +22,27 @@
       "es2020",
       "dom"
     ],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "@": [
+        "./src"
+      ],
+      "@core": [
+        "./src/app/core"
+      ],
+      "@shared": [
+        "./src/app/shared"
+      ],
+      "@model": [
+        "./src/app/models/public_api"
+      ],
+      "@feature": [
+        "./src/app/features"
+      ],
+      "@service": [
+        "./src/app/services/public_api"
+      ],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

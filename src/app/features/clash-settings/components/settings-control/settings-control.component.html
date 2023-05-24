@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title> 外部控制设置 </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="validateForm">
+      <div class="flex-box">
+        <div class="flex-item">
+          <div class="label">主机名</div>
+          <div class="control">
+            <mat-form-field appearance="fill">
+              <mat-label>主机名</mat-label>
+              <input matInput formControlName="hostname" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="label">端口</div>
+          <div class="control">
+            <mat-form-field appearance="fill">
+              <mat-label>端口</mat-label>
+              <input matInput formControlName="port" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="label">密钥</div>
+          <div class="control">
+            <mat-form-field appearance="fill">
+              <mat-label>密钥</mat-label>
+              <input matInput formControlName="key" />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-footer>
+    <div class="tip">
+      请注意，修改该配置项并不会修改你的 Clash
+      配置文件，请确认修改后的外部控制地址和 Clash
+      配置文件内的地址一致，否则会导致 Dashboard 无法连接。
+    </div>
+  </mat-card-footer>
+  <mat-card-actions class="actions">
+    <button class="action" type="button" mat-raised-button (click)="onCancel()">取消</button>
+    <button class="action" type="button" mat-raised-button color="primary" (click)="onConfirm()">确定</button>
+  </mat-card-actions>
+</mat-card>

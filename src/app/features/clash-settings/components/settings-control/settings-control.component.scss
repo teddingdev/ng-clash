@@ -1,0 +1,24 @@
+@use "/src/layout.scss" as layout;
+
+.flex-box {
+  @include layout.flex-box;
+}
+
+.flex-item {
+  @include layout.flex-item;
+}
+
+.tip {
+  margin: 8px 16px;
+  padding: 8px 16px;
+  border-left: 4px solid;
+  color: #00000050;
+}
+
+.actions {
+  justify-content: flex-end;
+}
+
+.action {
+  margin: 0 8px;
+}

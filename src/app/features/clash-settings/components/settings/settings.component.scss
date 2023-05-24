@@ -1,0 +1,21 @@
+@use "/src/layout.scss";
+
+.flex-box {
+  @include layout.flex-box;
+}
+
+.flex-item {
+  @include layout.flex-item(50%, 0, 8px, 8px, 8px);
+}
+
+.external-config {
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.save {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}

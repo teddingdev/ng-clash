@@ -1,0 +1,11 @@
+<mat-nav-list>
+  <ng-container *ngFor="let nav of navList;let i = index;last as last">
+    <mat-list-item [activated]="nav.activated" (click)="onChange.emit(nav)">
+      <mat-icon matListItemIcon>{{ nav.icon }}</mat-icon>
+      <span matListItemTitle>
+        {{nav.name}}
+      </span>
+    </mat-list-item>
+    <!-- <mat-divider *ngIf="!last"></mat-divider> -->
+  </ng-container>
+</mat-nav-list>

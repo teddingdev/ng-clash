@@ -1,0 +1,101 @@
+<div class="container">
+  <form [formGroup]="validateForm">
+    <mat-card>
+      <mat-card-content>
+        <div class="flex-box">
+          <div class="flex-item">
+            <div class="label">开机时启动</div>
+            <div class="control">
+              <mat-slide-toggle labelPosition="before" disabled>
+              </mat-slide-toggle>
+            </div>
+          </div>
+          <div class="flex-item">
+            <div class="label">语言</div>
+            <div class="control">
+              <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle value="bold">中文</mat-button-toggle>
+                <mat-button-toggle value="italic">English</mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+          <div class="flex-item">
+            <div class="label">设为系统代理</div>
+            <div class="control">
+              <mat-slide-toggle labelPosition="before" disabled>
+              </mat-slide-toggle>
+            </div>
+          </div>
+          <div class="flex-item">
+            <div class="label">允许来自局域网的连接</div>
+            <div class="control">
+              <mat-slide-toggle formControlName="allow-lan" labelPosition="before">
+              </mat-slide-toggle>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <br />
+    <mat-card>
+      <mat-card-content>
+        <div class="flex-box">
+          <div class="flex-item">
+            <div class="label">代理模式</div>
+            <div class="control">
+              <mat-button-toggle-group formControlName="mode">
+                <mat-button-toggle *ngFor="let mode of clashMode | keyvalue" [value]="mode.value">
+                  {{ mode.key }}
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+          <div class="flex-item">
+            <div class="label">Socks5 代理端口</div>
+            <div class="control">
+              <mat-form-field appearance="fill">
+                <mat-label>Socks5 代理端口</mat-label>
+                <input formControlName="socks-port" matInput formControlName="socks-port" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="flex-item">
+            <div class="label">HTTP 代理端口</div>
+            <div class="control">
+              <mat-form-field appearance="fill">
+                <mat-label>HTTP 代理端口</mat-label>
+                <input formControlName="redir-port" matInput />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="flex-item">
+            <div class="label">混合代理端口</div>
+            <div class="control">
+              <mat-form-field appearance="fill">
+                <mat-label>混合代理端口</mat-label>
+                <input formControlName="mixed-port" matInput formControlName="mixed-port" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="flex-item">
+            <div class="label">外部控制设置</div>
+            <div class="control">
+              <div (click)="openDialog()" class="external-config">
+                <span>{{ externalControlConfig?.hostname }}</span>
+                <span>:</span>
+                <span>{{externalControlConfig?.port}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+
+  <div class="save">
+    <button mat-fab [color]="validateForm.pristine ? 'primary' : 'accent'" (click)="save()">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+
+</div>

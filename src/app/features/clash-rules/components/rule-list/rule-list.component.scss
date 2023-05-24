@@ -1,0 +1,19 @@
+.container {
+  padding: 8px 0;
+  .rule {
+    display: flex;
+    padding: 8px 0 7px 0;
+    border-bottom: 1px dotted;
+    box-sizing: border-box;
+    color:#000000C0;
+  }
+  .type {
+    flex: 1 0 35%;
+  }
+  .payload {
+    flex: 1 1 60%;
+  }
+  .proxy {
+    flex: 1 0 auto;
+  }
+}

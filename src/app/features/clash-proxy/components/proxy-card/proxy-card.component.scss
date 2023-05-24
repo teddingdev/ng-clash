@@ -1,0 +1,27 @@
+.proxy-card-wrap {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.proxy-card {
+  box-sizing: border-box;
+  height: 100%;
+  transition: all 0.2s cubic-bezier(0.17, 0.84, 0.44, 1);
+  width: calc(25% - 12px);
+  margin-bottom: 16px;
+  margin-right: 16px;
+  position: relative;
+  top: 0;
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
+  &:hover {
+    top: -4px;
+  }
+}
+
+.proxy-card-list {
+  width: 100%;
+  margin-right: 0;
+}

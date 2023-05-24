@@ -1,0 +1,39 @@
+.title {
+  display: flex;
+}
+
+.policy-name {
+  font-weight: 500;
+  flex: 1 0 auto;
+}
+
+.policy-badge {
+  $width: 16px;
+  div {
+    display: block;
+    padding: 4px;
+    width: $width;
+    height: $width;
+    border-radius: calc($width * 2 + 4px * 2);
+    line-height: $width;
+    text-align: center;
+    font-size: 14px;
+    overflow: hidden;
+  }
+  flex: 0 0 calc($width * 3);
+}
+
+.policy-type {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.separator {
+  margin: 0 8px;
+}
+
+.selected {
+  &-light {
+    opacity: 0.3;
+  }
+}

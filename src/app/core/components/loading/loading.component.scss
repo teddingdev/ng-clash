@@ -1,0 +1,23 @@
+@use "/src/animate";
+
+.box {
+  margin: 4px;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  z-index: 99;
+  box-sizing: border-box;
+
+  &:before,
+  &:after {
+    @include animate.circle-base;
+  }
+
+  &:before {
+    @include animate.circle-A(4px);
+  }
+
+  &:after {
+    @include animate.circle-B(4px);
+  }
+}

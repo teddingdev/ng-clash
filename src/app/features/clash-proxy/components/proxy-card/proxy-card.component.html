@@ -1,0 +1,14 @@
+<div class="proxy-card-wrap" matRipple>
+  <div class="proxy-card" [ngClass]="{'proxy-card-list':viewModel === 'view_list'}" *ngFor="let proxy of proxies">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{proxy.type}}</mat-card-title>
+        <mat-card-subtitle>{{proxy.name}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <!-- <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button> -->
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

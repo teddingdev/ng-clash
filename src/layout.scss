@@ -1,0 +1,29 @@
+@mixin flex-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin flex-item(
+  $width: 100%,
+  $margin-top: 0px,
+  $margin-right: 0px,
+  $margin-bottom: 0px,
+  $margin-left: 0px
+) {
+  flex: {
+    grow: 0;
+    shrink: 0;
+    basis: calc($width - $margin-left - $margin-right);
+  }
+  margin: $margin-top $margin-right $margin-bottom $margin-left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .label {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .control {
+    // margin-right: 16px;
+  }
+}

@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="head">策略组</div>
+  <app-proxy-group [policyGroups]="policyGroups$ | async" (onPutProxy)="putProxy($event)">
+  </app-proxy-group>
+
+  <div class="head">
+    <div class="head-left">代理</div>
+    <div class="head-rigt">
+      <span class="view-model-icon" (click)="toggleViewModel(viewModel)">
+        <mat-icon matListItemIcon>{{ viewModel }}</mat-icon>
+      </span>
+    </div>
+  </div>
+  <app-proxy-card [proxies]="proxies$ | async" [viewModel]="viewModel"></app-proxy-card>
+</div>

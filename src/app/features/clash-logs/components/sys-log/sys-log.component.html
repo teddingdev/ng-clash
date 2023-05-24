@@ -1,0 +1,38 @@
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab label="Info">
+    <div class="log" *ngFor="let log of infoLog">
+      <div class="log-type">
+        [{{ log.time | date : "yyyy-MM-dd hh:mm:ss" }}]
+      </div>
+      <!-- <div class="log-type">{{log.type}}</div> -->
+      <div class="log-payload">{{ log.payload }}</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Debug">
+    <div class="log" *ngFor="let log of debugLog">
+      <div class="log-type">
+        [{{ log.time | date : "yyyy-MM-dd hh:mm:ss" }}]
+      </div>
+      <!-- <div class="log-type">{{log.type}}</div> -->
+      <div class="log-payload">{{ log.payload }}</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Warn">
+    <div class="log" *ngFor="let log of warnLog">
+      <div class="log-type">
+        [{{ log.time | date : "yyyy-MM-dd hh:mm:ss" }}]
+      </div>
+      <!-- <div class="log-type">{{log.type}}</div> -->
+      <div class="log-payload">{{ log.payload }}</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Error">
+    <div class="log" *ngFor="let log of errorLog">
+      <div class="log-type">
+        [{{ log.time | date : "yyyy-MM-dd hh:mm:ss" }}]
+      </div>
+      <!-- <div class="log-type">{{log.type}}</div> -->
+      <div class="log-payload">{{ log.payload }}</div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

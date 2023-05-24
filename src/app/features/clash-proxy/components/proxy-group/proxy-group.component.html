@@ -1,0 +1,28 @@
+<ng-content></ng-content>
+<mat-accordion multi>
+  <mat-expansion-panel *ngFor="let policyGroup of policyGroups;let i = index" #panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="title">
+        <div class="policy-badge">
+          <div>{{ policyGroup.all.length }}</div>
+        </div>
+        <div class="policy-name">{{ policyGroup.name }}</div>
+      </mat-panel-title>
+      <mat-panel-description>
+        <div class="policy-type">[ {{ policyGroup.type }} ]</div>
+        <div class="separator">&rarr;</div>
+        <div class="selected">
+          <mat-chip-option selected [selectable]="false" [disabled]="panel.expanded">
+            {{ policyGroup.now }}
+          </mat-chip-option>
+        </div>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-chip-listbox>
+      <mat-chip-option *ngFor="let proxyName of policyGroup.all" (click)="handlePutProxy(policyGroup.name,proxyName)"
+                       [selected]="proxyName === policyGroup.now" [selectable]="false">
+        {{ proxyName }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </mat-expansion-panel>
+</mat-accordion>

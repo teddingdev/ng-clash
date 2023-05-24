@@ -1,0 +1,29 @@
+<table *ngIf="connectionList" mat-table [dataSource]="connectionList.connections">
+  <ng-container matColumnDef="host">
+    <th mat-header-cell *matHeaderCellDef> host </th>
+    <td mat-cell *matCellDef="let element"> {{ element.metadata.host }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="network">
+    <th mat-header-cell *matHeaderCellDef> network </th>
+    <td mat-cell *matCellDef="let element"> {{ element.metadata.network }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef> type </th>
+    <td mat-cell *matCellDef="let element"> {{ element.metadata.type }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="chains">
+    <th mat-header-cell *matHeaderCellDef> chains </th>
+    <td mat-cell *matCellDef="let element"> {{ element.chains.join('/') }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rule">
+    <th mat-header-cell *matHeaderCellDef> rule </th>
+    <td mat-cell *matCellDef="let element"> {{ element.rule }} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
