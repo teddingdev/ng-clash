@@ -690,6 +690,49 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ 535:
+/*!**********************************************!*\
+  !*** ./src/app/services/api/host.service.ts ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HostService": () => (/* binding */ HostService)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _core_store_store_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/store/store.service */ 4936);
+
+
+class HostService {
+  get externalControlConfig() {
+    return this.storeService.externalControlConfig;
+  }
+  get host() {
+    return this.externalControlConfig.hostname;
+  }
+  get port() {
+    return this.externalControlConfig.port;
+  }
+  get hostname() {
+    return `//${this.host}:${this.port}`;
+  }
+  constructor(storeService) {
+    this.storeService = storeService;
+    console.log('HostService');
+  }
+}
+HostService.ɵfac = function HostService_Factory(t) {
+  return new (t || HostService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_core_store_store_service__WEBPACK_IMPORTED_MODULE_0__.StoreService));
+};
+HostService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
+  token: HostService,
+  factory: HostService.ɵfac,
+  providedIn: 'root'
+});
+
+/***/ }),
+
 /***/ 9490:
 /*!******************************************************************!*\
   !*** ./src/app/services/core/doc-cookies/doc-cookies.service.ts ***!
@@ -765,6 +808,62 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _websocket_websocket_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./websocket/websocket.service */ 3082);
 
 
+
+/***/ }),
+
+/***/ 4936:
+/*!******************************************************!*\
+  !*** ./src/app/services/core/store/store.service.ts ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "StoreService": () => (/* binding */ StoreService)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 2560);
+
+class StoreService {
+  get externalControlConfig() {
+    const defaultHostname = location.hostname;
+    const defaultPort = location.port;
+    let cachedHostname;
+    let cachedPort;
+    let cachedKey;
+    const cachedConfig = localStorage.getItem('ngClash');
+    if (cachedConfig) {
+      const ngClashConfig = JSON.parse(cachedConfig);
+      const externalControl = ngClashConfig['externalControl'] ?? {};
+      cachedHostname = externalControl['hostname'] || this.default_hostname;
+      cachedPort = externalControl['port'] || this.default_port;
+      cachedKey = externalControl['key'];
+    }
+    return {
+      hostname: cachedHostname ?? defaultHostname,
+      port: cachedPort ?? defaultPort,
+      key: cachedKey ?? ''
+    };
+  }
+  set externalControlConfig(externalControl) {
+    if (false) {}
+    const cachedConfig = localStorage.getItem('ngClash') ?? '{}';
+    const ngClashConfig = JSON.parse(cachedConfig);
+    ngClashConfig['externalControl'] = externalControl;
+    localStorage.setItem('ngClash', JSON.stringify(ngClashConfig));
+  }
+  constructor() {
+    this.default_hostname = 'localhost';
+    this.default_port = '7891';
+  }
+}
+StoreService.ɵfac = function StoreService_Factory(t) {
+  return new (t || StoreService)();
+};
+StoreService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+  token: StoreService,
+  factory: StoreService.ɵfac,
+  providedIn: 'root'
+});
 
 /***/ }),
 
@@ -940,8 +1039,7 @@ class LogService {
     this.debug$.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(log => JSON.parse(log)), (0,rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(log => ({
       ...log,
       time: new Date()
-    })), scanLog(), (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.catchError)(error => {
-      console.log(`🍅 -> file: log.service.ts:41 -> LogService -> catchError -> error:`, error);
+    })), scanLog(), (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.catchError)(() => {
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_5__.of)([]);
     })).subscribe(log => {
       this.debugLog = log;
@@ -949,8 +1047,7 @@ class LogService {
     this.info$.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(log => JSON.parse(log)), (0,rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(log => ({
       ...log,
       time: new Date()
-    })), scanLog(), (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.catchError)(error => {
-      console.log(`🍅 -> file: log.service.ts:41 -> LogService -> catchError -> error:`, error);
+    })), scanLog(), (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.catchError)(() => {
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_5__.of)([]);
     })).subscribe(log => {
       this.infoLog = log;
@@ -958,8 +1055,7 @@ class LogService {
     this.warn$.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(log => JSON.parse(log)), (0,rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(log => ({
       ...log,
       time: new Date()
-    })), scanLog(), (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.catchError)(error => {
-      console.log(`🍅 -> file: log.service.ts:41 -> LogService -> catchError -> error:`, error);
+    })), scanLog(), (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.catchError)(() => {
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_5__.of)([]);
     })).subscribe(log => {
       this.warnLog = log;
@@ -967,8 +1063,7 @@ class LogService {
     this.error$.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(log => JSON.parse(log)), (0,rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(log => ({
       ...log,
       time: new Date()
-    })), scanLog(), (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.catchError)(error => {
-      console.log(`🍅 -> file: log.service.ts:41 -> LogService -> catchError -> error:`, error);
+    })), scanLog(), (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.catchError)(() => {
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_5__.of)([]);
     })).subscribe(log => {
       this.errorLog = log;

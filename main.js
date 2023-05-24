@@ -142,30 +142,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ErrorInterceptor": () => (/* binding */ ErrorInterceptor)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 635);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 3158);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 745);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _services_api_host_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/api/host.service */ 535);
-
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 635);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 3158);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 745);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
 
 
 /** Pass untouched request through to the next request handler. */
 class ErrorInterceptor {
-  constructor(hostService) {
-    this.hostService = hostService;
-  }
+  constructor() {}
   intercept(req, next) {
-    return next.handle(req).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_1__.map)(req => req), (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.catchError)(error => {
+    return next.handle(req).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_0__.map)(req => req), (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.catchError)(error => {
       console.log(`🍅 -> file: error-interceptor.ts:24 -> ErrorInterceptor -> catchError -> error:`, error);
-      return (0,rxjs__WEBPACK_IMPORTED_MODULE_3__.of)();
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)();
     }));
   }
 }
 ErrorInterceptor.ɵfac = function ErrorInterceptor_Factory(t) {
-  return new (t || ErrorInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_services_api_host_service__WEBPACK_IMPORTED_MODULE_0__.HostService));
+  return new (t || ErrorInterceptor)();
 };
-ErrorInterceptor.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+ErrorInterceptor.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({
   token: ErrorInterceptor,
   factory: ErrorInterceptor.ɵfac
 });
@@ -192,101 +188,6 @@ const httpInterceptorProviders = [{
   useClass: _error_interceptor__WEBPACK_IMPORTED_MODULE_0__.ErrorInterceptor,
   multi: true
 }];
-
-/***/ }),
-
-/***/ 535:
-/*!**********************************************!*\
-  !*** ./src/app/services/api/host.service.ts ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "HostService": () => (/* binding */ HostService)
-/* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _core_store_store_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/store/store.service */ 4936);
-
-
-class HostService {
-  get externalControlConfig() {
-    return this.storeService.externalControlConfig;
-  }
-  get host() {
-    return this.externalControlConfig.hostname;
-  }
-  get port() {
-    return this.externalControlConfig.port;
-  }
-  get hostname() {
-    return `//${this.host}:${this.port}`;
-  }
-  constructor(storeService) {
-    this.storeService = storeService;
-  }
-}
-HostService.ɵfac = function HostService_Factory(t) {
-  return new (t || HostService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_core_store_store_service__WEBPACK_IMPORTED_MODULE_0__.StoreService));
-};
-HostService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
-  token: HostService,
-  factory: HostService.ɵfac,
-  providedIn: 'root'
-});
-
-/***/ }),
-
-/***/ 4936:
-/*!******************************************************!*\
-  !*** ./src/app/services/core/store/store.service.ts ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "StoreService": () => (/* binding */ StoreService)
-/* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 2560);
-
-class StoreService {
-  get externalControlConfig() {
-    const defaultHostname = location.hostname;
-    const defaultPort = location.port;
-    let cachedHostname;
-    let cachedPort;
-    let cachedKey;
-    const cachedConfig = localStorage.getItem('ngClash');
-    if (cachedConfig) {
-      const ngClashConfig = JSON.parse(cachedConfig);
-      const externalControl = ngClashConfig['externalControl'] ?? {};
-      cachedHostname = externalControl['hostname'];
-      cachedPort = externalControl['port'];
-      cachedKey = externalControl['key'];
-    }
-    return {
-      hostname: cachedHostname ?? defaultHostname,
-      port: cachedPort ?? defaultPort,
-      key: cachedKey ?? ''
-    };
-  }
-  set externalControlConfig(externalControl) {
-    if (false) {}
-    const cachedConfig = localStorage.getItem('ngClash') ?? '{}';
-    const ngClashConfig = JSON.parse(cachedConfig);
-    ngClashConfig['externalControl'] = externalControl;
-    localStorage.setItem('ngClash', JSON.stringify(ngClashConfig));
-  }
-  constructor() {}
-}
-StoreService.ɵfac = function StoreService_Factory(t) {
-  return new (t || StoreService)();
-};
-StoreService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-  token: StoreService,
-  factory: StoreService.ɵfac,
-  providedIn: 'root'
-});
 
 /***/ }),
 

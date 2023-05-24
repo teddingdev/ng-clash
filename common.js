@@ -57,6 +57,8 @@ class ClashApiService {
   }
   fetchRules() {
     const url = `${this.hostname}/rules`;
+    console.log(`🍅 -> file: clash-api.service.ts:58 -> ClashApiService -> fetchRules -> this.hostname:`, this.hostname);
+    console.log(`🍅 -> file: clash-api.service.ts:58 -> ClashApiService -> fetchRules -> url:`, url);
     return this.http.get(url);
   }
   constructor(http, hostService) {
