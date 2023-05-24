@@ -1,0 +1,64 @@
+name: github-pages
+
+on:
+  push:
+    branches: [master]
+    paths-ignore: [.github/workflows/**]
+
+env:
+  PROJECT_NAME: ng-clash
+  TZ: Asia/Shanghai
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  ACTION_BOT_NAME: github-actions[bot]
+  ACTION_BOT_EMAIL: github-actions[bot]@users.noreply.github.com
+  BRANCH_SOURCE: master
+  BRANCH_GITHUB_PAGES: github-pages
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Checkout ${{ env.BRANCH_SOURCE }}
+        uses: actions/checkout@v3
+        with:
+          path: ${{ env.BRANCH_SOURCE }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Build
+        run: |
+          ls -al
+          cd ${{ env.BRANCH_SOURCE }}
+          npm install
+          npm run build:prod
+
+      - name: Checkout ${{ env.BRANCH_GITHUB_PAGES }}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ env.BRANCH_GITHUB_PAGES }}
+          path: ${{ env.BRANCH_GITHUB_PAGES }}
+
+      - name: Copy Files
+        run: |
+          cp -r ./${{ env.BRANCH_SOURCE }}/dist/${{ env.PROJECT_NAME }}/* ./${{ env.BRANCH_GITHUB_PAGES }}
+          cp ./${{ env.BRANCH_SOURCE }}/.gitignore ./${{ env.BRANCH_GITHUB_PAGES }}
+          date +%Y-%m-%d\ %H:%M:%S\ %z > ./${{ env.BRANCH_GITHUB_PAGES }}/generated.txt
+          ls -al ./$BRANCH_GITHUB_PAGES
+
+      - name: Deploy
+        run: |
+          date +%Y-%m-%d\ %H:%M:%S\ %z > ./${{ env.BRANCH_GITHUB_PAGES }}/generated.txt
+          cd ${{ env.BRANCH_GITHUB_PAGES }}
+          git add .
+          git config user.name ${{ env.ACTION_BOT_NAME }}
+          git config user.email ${{ env.ACTION_BOT_EMAIL }}
+          git commit -m "Site updated: $(date +%Y-%d-%m\ %H:%M:%S\ %z)"
+          git push
