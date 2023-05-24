@@ -715,7 +715,7 @@ class HostService {
     return this.externalControlConfig.port;
   }
   get hostname() {
-    return `//${this.host}:${this.port}`;
+    return `http://${this.host}:${this.port}`;
   }
   constructor(storeService) {
     this.storeService = storeService;
