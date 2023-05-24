@@ -825,8 +825,8 @@ __webpack_require__.r(__webpack_exports__);
 
 class StoreService {
   get externalControlConfig() {
-    const defaultHostname = location.hostname;
-    const defaultPort = location.port;
+    const defaultHostname = 'localhost';
+    const defaultPort = '7891';
     let cachedHostname;
     let cachedPort;
     let cachedKey;
@@ -834,8 +834,8 @@ class StoreService {
     if (cachedConfig) {
       const ngClashConfig = JSON.parse(cachedConfig);
       const externalControl = ngClashConfig['externalControl'] ?? {};
-      cachedHostname = externalControl['hostname'] || this.default_hostname;
-      cachedPort = externalControl['port'] || this.default_port;
+      cachedHostname = externalControl['hostname'] || defaultHostname;
+      cachedPort = externalControl['port'] || defaultPort;
       cachedKey = externalControl['key'];
     }
     return {
@@ -851,10 +851,7 @@ class StoreService {
     ngClashConfig['externalControl'] = externalControl;
     localStorage.setItem('ngClash', JSON.stringify(ngClashConfig));
   }
-  constructor() {
-    this.default_hostname = 'localhost';
-    this.default_port = '7891';
-  }
+  constructor() {}
 }
 StoreService.ɵfac = function StoreService_Factory(t) {
   return new (t || StoreService)();
