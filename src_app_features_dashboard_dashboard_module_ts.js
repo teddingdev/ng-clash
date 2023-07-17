@@ -487,14 +487,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var ClashMode;
 (function (ClashMode) {
-  /** 规则 */
-  ClashMode["RULE"] = "rule";
-  /** 脚本 */
-  ClashMode["SCRIPT"] = "script";
-  /** 直连 */
-  ClashMode["DIRECT"] = "direct";
   /** 全局 */
-  ClashMode["GLOBAL"] = "global";
+  ClashMode["global"] = "Global";
+  /** 规则 */
+  ClashMode["rule"] = "Rule";
+  /** 脚本 */
+  ClashMode["script"] = "Script";
+  /** 直连 */
+  ClashMode["direct"] = "Direct";
 })(ClashMode || (ClashMode = {}));
 
 /***/ }),
@@ -700,13 +700,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "HostService": () => (/* binding */ HostService)
 /* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _core_store_store_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/store/store.service */ 4936);
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 2560);
 
 class HostService {
   get externalControlConfig() {
-    return this.storeService.externalControlConfig;
+    const defaultHostname = 'localhost';
+    const defaultPort = '7891';
+    let cachedHostname;
+    let cachedPort;
+    let cachedKey;
+    const cachedConfig = localStorage.getItem('ngClash');
+    if (cachedConfig) {
+      const ngClashConfig = JSON.parse(cachedConfig);
+      const externalControl = ngClashConfig['externalControl'] ?? {};
+      cachedHostname = externalControl['hostname'] || defaultHostname;
+      cachedPort = externalControl['port'] || defaultPort;
+      cachedKey = externalControl['key'];
+    }
+    return {
+      hostname: cachedHostname ?? defaultHostname,
+      port: cachedPort ?? defaultPort,
+      key: cachedKey ?? ''
+    };
+  }
+  set externalControlConfig(externalControl) {
+    if (false) {}
+    const cachedConfig = localStorage.getItem('ngClash') ?? '{}';
+    const ngClashConfig = JSON.parse(cachedConfig);
+    ngClashConfig['externalControl'] = externalControl;
+    localStorage.setItem('ngClash', JSON.stringify(ngClashConfig));
   }
   get host() {
     return this.externalControlConfig.hostname;
@@ -717,15 +739,12 @@ class HostService {
   get hostname() {
     return `http://${this.host}:${this.port}`;
   }
-  constructor(storeService) {
-    this.storeService = storeService;
-    console.log('HostService');
-  }
+  constructor() {}
 }
 HostService.ɵfac = function HostService_Factory(t) {
-  return new (t || HostService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_core_store_store_service__WEBPACK_IMPORTED_MODULE_0__.StoreService));
+  return new (t || HostService)();
 };
-HostService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
+HostService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: HostService,
   factory: HostService.ɵfac,
   providedIn: 'root'
@@ -808,59 +827,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _websocket_websocket_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./websocket/websocket.service */ 3082);
 
 
-
-/***/ }),
-
-/***/ 4936:
-/*!******************************************************!*\
-  !*** ./src/app/services/core/store/store.service.ts ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "StoreService": () => (/* binding */ StoreService)
-/* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 2560);
-
-class StoreService {
-  get externalControlConfig() {
-    const defaultHostname = 'localhost';
-    const defaultPort = '7891';
-    let cachedHostname;
-    let cachedPort;
-    let cachedKey;
-    const cachedConfig = localStorage.getItem('ngClash');
-    if (cachedConfig) {
-      const ngClashConfig = JSON.parse(cachedConfig);
-      const externalControl = ngClashConfig['externalControl'] ?? {};
-      cachedHostname = externalControl['hostname'] || defaultHostname;
-      cachedPort = externalControl['port'] || defaultPort;
-      cachedKey = externalControl['key'];
-    }
-    return {
-      hostname: cachedHostname ?? defaultHostname,
-      port: cachedPort ?? defaultPort,
-      key: cachedKey ?? ''
-    };
-  }
-  set externalControlConfig(externalControl) {
-    if (false) {}
-    const cachedConfig = localStorage.getItem('ngClash') ?? '{}';
-    const ngClashConfig = JSON.parse(cachedConfig);
-    ngClashConfig['externalControl'] = externalControl;
-    localStorage.setItem('ngClash', JSON.stringify(ngClashConfig));
-  }
-  constructor() {}
-}
-StoreService.ɵfac = function StoreService_Factory(t) {
-  return new (t || StoreService)();
-};
-StoreService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-  token: StoreService,
-  factory: StoreService.ɵfac,
-  providedIn: 'root'
-});
 
 /***/ }),
 

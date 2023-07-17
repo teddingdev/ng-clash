@@ -3340,7 +3340,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵPRE_STYLE": () => (/* binding */ ɵPRE_STYLE)
 /* harmony export */ });
 /**
- * @license Angular v15.2.6
+ * @license Angular v15.2.9
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -4596,7 +4596,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/animations */ 4851);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 2560);
 /**
- * @license Angular v15.2.6
+ * @license Angular v15.2.9
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -9027,7 +9027,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 2560);
 /**
- * @license Angular v15.2.6
+ * @license Angular v15.2.9
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -9053,10 +9053,9 @@ function setRootDomAdapter(adapter) {
 class DomAdapter {}
 
 /**
- * A DI Token representing the main rendering context. In a browser this is the DOM Document.
- *
- * Note: Document might not be available in the Application Context when Application and Rendering
- * Contexts are not the same (e.g. when running the application in a Web Worker).
+ * A DI Token representing the main rendering context.
+ * In a browser and SSR this is the DOM Document.
+ * When using SSR, that document is created by [Domino](https://github.com/angular/domino).
  *
  * @publicApi
  */
@@ -14646,7 +14645,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.2.6');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.2.9');
 
 /**
  * Defines a scroll position manager. Implemented by `BrowserViewportScroller`.
@@ -16062,8 +16061,18 @@ function assertGreaterThanZero(dir, inputValue, inputName) {
 function assertNoImageDistortion(dir, img, renderer) {
   const removeListenerFn = renderer.listen(img, 'load', () => {
     removeListenerFn();
-    const renderedWidth = img.clientWidth;
-    const renderedHeight = img.clientHeight;
+    const computedStyle = window.getComputedStyle(img);
+    let renderedWidth = parseFloat(computedStyle.getPropertyValue('width'));
+    let renderedHeight = parseFloat(computedStyle.getPropertyValue('height'));
+    const boxSizing = computedStyle.getPropertyValue('box-sizing');
+    if (boxSizing === 'border-box') {
+      const paddingTop = computedStyle.getPropertyValue('padding-top');
+      const paddingRight = computedStyle.getPropertyValue('padding-right');
+      const paddingBottom = computedStyle.getPropertyValue('padding-bottom');
+      const paddingLeft = computedStyle.getPropertyValue('padding-left');
+      renderedWidth -= parseFloat(paddingRight) + parseFloat(paddingLeft);
+      renderedHeight -= parseFloat(paddingTop) + parseFloat(paddingBottom);
+    }
     const renderedAspectRatio = renderedWidth / renderedHeight;
     const nonZeroRenderedDimensions = renderedWidth !== 0 && renderedHeight !== 0;
     const intrinsicWidth = img.naturalWidth;
@@ -16257,7 +16266,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 116);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 635);
 /**
- * @license Angular v15.2.6
+ * @license Angular v15.2.9
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -16339,14 +16348,18 @@ class HttpHeaders {
           assertValidHeaders(headers);
         }
         this.headers = new Map();
-        Object.keys(headers).forEach(name => {
-          let values = headers[name];
-          const key = name.toLowerCase();
+        Object.entries(headers).forEach(([name, values]) => {
+          let headerValues;
           if (typeof values === 'string') {
-            values = [values];
+            headerValues = [values];
+          } else if (typeof values === 'number') {
+            headerValues = [values.toString()];
+          } else {
+            headerValues = values.map(value => value.toString());
           }
-          if (values.length > 0) {
-            this.headers.set(key, values);
+          if (headerValues.length > 0) {
+            const key = name.toLowerCase();
+            this.headers.set(key, headerValues);
             this.maybeSetNormalizedName(name, key);
           }
         });
@@ -16524,13 +16537,13 @@ class HttpHeaders {
 }
 /**
  * Verifies that the headers object has the right shape: the values
- * must be either strings or arrays. Throws an error if an invalid
+ * must be either strings, numbers or arrays. Throws an error if an invalid
  * header value is present.
  */
 function assertValidHeaders(headers) {
   for (const [key, value] of Object.entries(headers)) {
-    if (typeof value !== 'string' && !Array.isArray(value)) {
-      throw new Error(`Unexpected value of the \`${key}\` header provided. ` + `Expecting either a string or an array, but got: \`${value}\`.`);
+    if (!(typeof value === 'string' || typeof value === 'number') && !Array.isArray(value)) {
+      throw new Error(`Unexpected value of the \`${key}\` header provided. ` + `Expecting either a string, a number or an array, but got: \`${value}\`.`);
     }
   }
 }
@@ -17777,8 +17790,8 @@ function jsonpCallbackContext() {
 /**
  * Processes an `HttpRequest` with the JSONP method,
  * by performing JSONP style requests.
- * @see `HttpHandler`
- * @see `HttpXhrBackend`
+ * @see {@link HttpHandler}
+ * @see {@link HttpXhrBackend}
  *
  * @publicApi
  */
@@ -17967,7 +17980,7 @@ function jsonpInterceptorFn(req, next) {
  * Identifies requests with the method JSONP and
  * shifts them to the `JsonpClientBackend`.
  *
- * @see `HttpInterceptor`
+ * @see {@link HttpInterceptor}
  *
  * @publicApi
  */
@@ -18018,8 +18031,8 @@ function getResponseUrl(xhr) {
 }
 /**
  * Uses `XMLHttpRequest` to send requests to a backend server.
- * @see `HttpHandler`
- * @see `JsonpClientBackend`
+ * @see {@link HttpHandler}
+ * @see {@link JsonpClientBackend}
  *
  * @publicApi
  */
@@ -18450,12 +18463,12 @@ function makeHttpFeature(kind, providers) {
  * feature functions to `provideHttpClient`. For example, HTTP interceptors can be added using the
  * `withInterceptors(...)` feature.
  *
- * @see withInterceptors
- * @see withInterceptorsFromDi
- * @see withXsrfConfiguration
- * @see withNoXsrfProtection
- * @see withJsonpSupport
- * @see withRequestsMadeViaParent
+ * @see {@link withInterceptors}
+ * @see {@link withInterceptorsFromDi}
+ * @see {@link withXsrfConfiguration}
+ * @see {@link withNoXsrfProtection}
+ * @see {@link withJsonpSupport}
+ * @see {@link withRequestsMadeViaParent}
  */
 function provideHttpClient(...features) {
   if (ngDevMode) {
@@ -18490,8 +18503,8 @@ function provideHttpClient(...features) {
  * Adds one or more functional-style HTTP interceptors to the configuration of the `HttpClient`
  * instance.
  *
- * @see HttpInterceptorFn
- * @see provideHttpClient
+ * @see {@link HttpInterceptorFn}
+ * @see {@link provideHttpClient}
  * @publicApi
  */
 function withInterceptors(interceptorFns) {
@@ -18511,9 +18524,9 @@ const LEGACY_INTERCEPTOR_FN = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.Inj
  * Prefer `withInterceptors` and functional interceptors instead, as support for DI-provided
  * interceptors may be phased out in a later release.
  *
- * @see HttpInterceptor
- * @see HTTP_INTERCEPTORS
- * @see provideHttpClient
+ * @see {@link HttpInterceptor}
+ * @see {@link HTTP_INTERCEPTORS}
+ * @see {@link provideHttpClient}
  */
 function withInterceptorsFromDi() {
   // Note: the legacy interceptor function is provided here via an intermediate token
@@ -18535,7 +18548,7 @@ function withInterceptorsFromDi() {
  *
  * This feature is incompatible with the `withNoXsrfProtection` feature.
  *
- * @see provideHttpClient
+ * @see {@link provideHttpClient}
  */
 function withXsrfConfiguration({
   cookieName,
@@ -18561,7 +18574,7 @@ function withXsrfConfiguration({
  *
  * This feature is incompatible with the `withXsrfConfiguration` feature.
  *
- * @see provideHttpClient
+ * @see {@link provideHttpClient}
  */
 function withNoXsrfProtection() {
   return makeHttpFeature(HttpFeatureKind.NoXsrfProtection, [{
@@ -18572,7 +18585,7 @@ function withNoXsrfProtection() {
 /**
  * Add JSONP support to the configuration of the current `HttpClient` instance.
  *
- * @see provideHttpClient
+ * @see {@link provideHttpClient}
  */
 function withJsonpSupport() {
   return makeHttpFeature(HttpFeatureKind.JsonpSupport, [JsonpClientBackend, {
@@ -18601,7 +18614,7 @@ function withJsonpSupport() {
  * "bubble up" until either reaching the root level or an `HttpClient` which was not configured with
  * this option.
  *
- * @see provideHttpClient
+ * @see {@link provideHttpClient}
  * @developerPreview
  */
 function withRequestsMadeViaParent() {
@@ -19158,7 +19171,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 6646);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 1203);
 /**
- * @license Angular v15.2.6
+ * @license Angular v15.2.9
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -19548,26 +19561,11 @@ function getOwnDefinition(type, field) {
 function getInheritedInjectableDef(type) {
   const def = type && (type[NG_PROV_DEF] || type[NG_INJECTABLE_DEF]);
   if (def) {
-    const typeName = getTypeName(type);
-    ngDevMode && console.warn(`DEPRECATED: DI is instantiating a token "${typeName}" that inherits its @Injectable decorator but does not provide one itself.\n` + `This will become an error in a future version of Angular. Please add @Injectable() to the "${typeName}" class.`);
+    ngDevMode && console.warn(`DEPRECATED: DI is instantiating a token "${type.name}" that inherits its @Injectable decorator but does not provide one itself.\n` + `This will become an error in a future version of Angular. Please add @Injectable() to the "${type.name}" class.`);
     return def;
   } else {
     return null;
   }
-}
-/** Gets the name of a type, accounting for some cross-browser differences. */
-function getTypeName(type) {
-  // `Function.prototype.name` behaves differently between IE and other browsers. In most browsers
-  // it'll always return the name of the function itself, no matter how many other functions it
-  // inherits from. On IE the function doesn't have its own `name` property, but it takes it from
-  // the lowest level in the prototype chain. E.g. if we have `class Foo extends Parent` most
-  // browsers will evaluate `Foo.name` to `Foo` while IE will return `Parent`. We work around
-  // the issue by converting the function to a string and parsing its name out that way via a regex.
-  if (type.hasOwnProperty('name')) {
-    return type.name;
-  }
-  const match = ('' + type).match(/^function\s*([^\s(]+)/);
-  return match === null ? '' : match[1];
 }
 /**
  * Read the injector def type in a way which is immune to accidentally reading inherited value.
@@ -23932,8 +23930,8 @@ function validateElementIsKnown(element, lView, tagName, schemas, hasDirectives)
     // as a custom element. Note that unknown elements with a dash in their name won't be instances
     // of HTMLUnknownElement in browsers that support web components.
     const isUnknown =
-    // Note that we can't check for `typeof HTMLUnknownElement === 'function'`,
-    // because while most browsers return 'function', IE returns 'object'.
+    // Note that we can't check for `typeof HTMLUnknownElement === 'function'` because
+    // Domino doesn't expose HTMLUnknownElement globally.
     typeof HTMLUnknownElement !== 'undefined' && HTMLUnknownElement && element instanceof HTMLUnknownElement || typeof customElements !== 'undefined' && tagName.indexOf('-') > -1 && !customElements.get(tagName);
     if (isUnknown && !matchingSchemas(schemas, tagName)) {
       const isHostStandalone = isHostComponentStandalone(lView);
@@ -23981,8 +23979,7 @@ function isPropertyValid(element, propName, tagName, schemas) {
   if (matchingSchemas(schemas, tagName) || propName in element || isAnimationProp(propName)) {
     return true;
   }
-  // Note: `typeof Node` returns 'function' in most browsers, but on IE it is 'object' so we
-  // need to account for both here, while being careful with `typeof null` also returning 'object'.
+  // Note: `typeof Node` returns 'function' in most browsers, but is undefined with domino.
   return typeof Node === 'undefined' || Node === null || !(element instanceof Node);
 }
 /**
@@ -27255,7 +27252,7 @@ class Version {
 /**
  * @publicApi
  */
-const VERSION = new Version('15.2.6');
+const VERSION = new Version('15.2.9');
 
 // This default value is when checking the hierarchy for a token.
 //
@@ -30994,7 +30991,8 @@ class ComponentRef extends ComponentRef$1 {
     if (inputData !== null && (dataValue = inputData[name])) {
       const lView = this._rootLView;
       setInputsForProperty(lView[TVIEW], lView, dataValue, name, value);
-      markDirtyIfOnPush(lView, this._tNode.index);
+      const childComponentLView = getComponentLViewByIndex(this._tNode.index, lView);
+      markViewDirty(childComponentLView);
     } else {
       if (ngDevMode) {
         const cmpNameForError = stringifyForError(this.componentType);
@@ -34095,7 +34093,7 @@ function styleStringParser(keyValueArray, text) {
  * @codeGenApi
  */
 function ɵɵclassMap(classes) {
-  checkStylingMap(keyValueArraySet, classStringParser, classes, true);
+  checkStylingMap(classKeyValueArraySet, classStringParser, classes, true);
 }
 /**
  * Parse text as class and add values to KeyValueArray.
@@ -34520,6 +34518,26 @@ function toStylingKeyValueArray(keyValueArraySet, stringParser, value) {
  */
 function styleKeyValueArraySet(keyValueArray, key, value) {
   keyValueArraySet(keyValueArray, key, unwrapSafeValue(value));
+}
+/**
+ * Class-binding-specific function for setting the `value` for a `key`.
+ *
+ * See: `keyValueArraySet` for details
+ *
+ * @param keyValueArray KeyValueArray to add to.
+ * @param key Style key to add.
+ * @param value The value to set.
+ */
+function classKeyValueArraySet(keyValueArray, key, value) {
+  // We use `classList.add` to eventually add the CSS classes to the DOM node. Any value passed into
+  // `add` is stringified and added to the `class` attribute, e.g. even null, undefined or numbers
+  // will be added. Stringify the key here so that our internal data structure matches the value in
+  // the DOM. The only exceptions are empty strings and strings that contain spaces for which
+  // the browser throws an error. We ignore such values, because the error is somewhat cryptic.
+  const stringKey = String(key);
+  if (stringKey !== '' && !stringKey.includes(' ')) {
+    keyValueArraySet(keyValueArray, stringKey, value);
+  }
 }
 /**
  * Update map based styling.
@@ -44399,16 +44417,11 @@ class DebugElement extends DebugNode {
         i += 2;
       }
     }
-    const eAttrs = element.attributes;
-    for (let i = 0; i < eAttrs.length; i++) {
-      const attr = eAttrs[i];
-      const lowercaseName = attr.name.toLowerCase();
+    for (const attr of element.attributes) {
       // Make sure that we don't assign the same attribute both in its
       // case-sensitive form and the lower-cased one from the browser.
-      if (lowercaseTNodeAttrs.indexOf(lowercaseName) === -1) {
-        // Save the lowercase name to align the behavior between browsers.
-        // IE preserves the case, while all other browser convert it to lower case.
-        attributes[lowercaseName] = attr.value;
+      if (!lowercaseTNodeAttrs.includes(attr.name)) {
+        attributes[attr.name] = attr.value;
       }
     }
     return attributes;
@@ -46131,7 +46144,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_animations_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/animations/browser */ 5787);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ 4666);
 /**
- * @license Angular v15.2.6
+ * @license Angular v15.2.9
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -46799,7 +46812,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
 /**
- * @license Angular v15.2.6
+ * @license Angular v15.2.9
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -47475,10 +47488,9 @@ class DefaultDomRenderer2 {
   }
   removeStyle(el, style, flags) {
     if (flags & _angular_core__WEBPACK_IMPORTED_MODULE_1__.RendererStyleFlags2.DashCase) {
+      // removeProperty has no effect when used on camelCased properties.
       el.style.removeProperty(style);
     } else {
-      // IE requires '' instead of null
-      // see https://github.com/angular/angular/issues/7916
       el.style[style] = '';
     }
   }
@@ -49101,7 +49113,7 @@ DomSanitizerImpl.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.2.6');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.2.9');
 
 /**
  * @module
@@ -49232,7 +49244,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! rxjs/operators */ 1308);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
 /**
- * @license Angular v15.2.6
+ * @license Angular v15.2.9
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -54287,6 +54299,9 @@ class Router {
    * page id in the browser history is 1 more than the previous entry.
    */
   get browserPageId() {
+    if (this.canceledNavigationResolution !== 'computed') {
+      return undefined;
+    }
     return this.location.getState()?.ɵrouterPageId;
   }
   /**
@@ -54443,7 +54458,7 @@ class Router {
     this.routerState = createEmptyState(this.currentUrlTree, null);
     this.navigationTransitions.setupNavigations(this).subscribe(t => {
       this.lastSuccessfulId = t.id;
-      this.currentPageId = t.targetPageId;
+      this.currentPageId = this.browserPageId ?? 0;
     }, e => {
       this.console.warn(`Unhandled Navigation Error: ${e}`);
     });
@@ -54786,13 +54801,9 @@ class Router {
       if (restoredState && restoredState.ɵrouterPageId) {
         targetPageId = restoredState.ɵrouterPageId;
       } else {
-        // If we're replacing the URL or doing a silent navigation, we do not want to increment the
-        // page id because we aren't pushing a new entry to history.
-        if (extras.replaceUrl || extras.skipLocationChange) {
-          targetPageId = this.browserPageId ?? 0;
-        } else {
-          targetPageId = (this.browserPageId ?? 0) + 1;
-        }
+        // Otherwise, targetPageId should be the next number in the event of a `pushState`
+        // navigation.
+        targetPageId = (this.browserPageId ?? 0) + 1;
       }
     } else {
       // This is unused when `canceledNavigationResolution` is not computed.
@@ -54821,13 +54832,19 @@ class Router {
   /** @internal */
   setBrowserUrl(url, transition) {
     const path = this.urlSerializer.serialize(url);
-    const state = {
-      ...transition.extras.state,
-      ...this.generateNgRouterState(transition.id, transition.targetPageId)
-    };
     if (this.location.isCurrentPathEqualTo(path) || !!transition.extras.replaceUrl) {
+      // replacements do not update the target page
+      const currentBrowserPageId = this.browserPageId;
+      const state = {
+        ...transition.extras.state,
+        ...this.generateNgRouterState(transition.id, currentBrowserPageId)
+      };
       this.location.replaceState(path, '', state);
     } else {
+      const state = {
+        ...transition.extras.state,
+        ...this.generateNgRouterState(transition.id, transition.targetPageId)
+      };
       this.location.go(path, '', state);
     }
   }
@@ -54838,14 +54855,9 @@ class Router {
    */
   restoreHistory(transition, restoringFromCaughtError = false) {
     if (this.canceledNavigationResolution === 'computed') {
-      const targetPagePosition = this.currentPageId - transition.targetPageId;
-      // The navigator change the location before triggered the browser event,
-      // so we need to go back to the current url if the navigation is canceled.
-      // Also, when navigation gets cancelled while using url update strategy eager, then we need to
-      // go back. Because, when `urlUpdateStrategy` is `eager`; `setBrowserUrl` method is called
-      // before any verification.
-      const browserUrlUpdateOccurred = transition.source === 'popstate' || this.urlUpdateStrategy === 'eager' || this.currentUrlTree === this.getCurrentNavigation()?.finalUrl;
-      if (browserUrlUpdateOccurred && targetPagePosition !== 0) {
+      const currentBrowserPageId = this.browserPageId ?? this.currentPageId;
+      const targetPagePosition = this.currentPageId - currentBrowserPageId;
+      if (targetPagePosition !== 0) {
         this.location.historyGo(targetPagePosition);
       } else if (this.currentUrlTree === this.getCurrentNavigation()?.finalUrl && targetPagePosition === 0) {
         // We got to the activation stage (where currentUrlTree is set to the navigation's
@@ -56558,7 +56570,7 @@ function provideRouterInitializer() {
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.2.6');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.2.9');
 
 /**
  * @module

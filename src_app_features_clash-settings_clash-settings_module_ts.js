@@ -52,11 +52,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ClashSettingsComponent": () => (/* binding */ ClashSettingsComponent)
 /* harmony export */ });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var src_app_services_core_store_store_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/services/core/store/store.service */ 4936);
-/* harmony import */ var _service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @service */ 647);
+/* harmony import */ var src_app_services_api_host_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/services/api/host.service */ 535);
+/* harmony import */ var src_app_services_core_store_store_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/services/core/store/store.service */ 4936);
 /* harmony import */ var _components_settings_settings_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/settings/settings.component */ 485);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 4666);
-
 
 
 
@@ -64,34 +62,45 @@ __webpack_require__.r(__webpack_exports__);
 class ClashSettingsComponent {
   /** 外部控制设置 */
   get externalControlConfig() {
-    return this.storeService.externalControlConfig;
+    return this.hostService.externalControlConfig;
   }
-  ngOnInit() {}
-  constructor(storeService, clashApiService) {
+  updateDashboardConfig() {
+    this.storeService.configExpired();
+  }
+  ngOnInit() {
+    this.updateDashboardConfig();
+  }
+  constructor(hostService, storeService) {
+    this.hostService = hostService;
     this.storeService = storeService;
-    this.clashApiService = clashApiService;
-    this.dashboardConfig$ = this.clashApiService.fetchConfig();
+    this.dashboardConfig = null;
+    this.storeService.dashboardConfig$.subscribe(config => {
+      this.dashboardConfig = config;
+    });
   }
 }
 ClashSettingsComponent.ɵfac = function ClashSettingsComponent_Factory(t) {
-  return new (t || ClashSettingsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](src_app_services_core_store_store_service__WEBPACK_IMPORTED_MODULE_0__.StoreService), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_service__WEBPACK_IMPORTED_MODULE_1__.ClashApiService));
+  return new (t || ClashSettingsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](src_app_services_api_host_service__WEBPACK_IMPORTED_MODULE_0__.HostService), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](src_app_services_core_store_store_service__WEBPACK_IMPORTED_MODULE_1__.StoreService));
 };
 ClashSettingsComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineComponent"]({
   type: ClashSettingsComponent,
   selectors: [["app-clash-settings"]],
-  decls: 2,
-  vars: 4,
-  consts: [[3, "dashboardConfig", "externalControlConfig"]],
+  decls: 1,
+  vars: 2,
+  consts: [[3, "dashboardConfig", "externalControlConfig", "updateDashboardConfig"]],
   template: function ClashSettingsComponent_Template(rf, ctx) {
     if (rf & 1) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](0, "app-settings", 0);
-      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipe"](1, "async");
+      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "app-settings", 0);
+      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("updateDashboardConfig", function ClashSettingsComponent_Template_app_settings_updateDashboardConfig_0_listener() {
+        return ctx.updateDashboardConfig();
+      });
+      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
     }
     if (rf & 2) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("dashboardConfig", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](1, 2, ctx.dashboardConfig$))("externalControlConfig", ctx.externalControlConfig);
+      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("dashboardConfig", ctx.dashboardConfig)("externalControlConfig", ctx.externalControlConfig);
     }
   },
-  dependencies: [_components_settings_settings_component__WEBPACK_IMPORTED_MODULE_2__.SettingsComponent, _angular_common__WEBPACK_IMPORTED_MODULE_4__.AsyncPipe],
+  dependencies: [_components_settings_settings_component__WEBPACK_IMPORTED_MODULE_2__.SettingsComponent],
   styles: ["\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ== */"]
 });
 
@@ -268,7 +277,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 2508);
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/dialog */ 1484);
 /* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/snack-bar */ 930);
-/* harmony import */ var src_app_services_core_store_store_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/core/store/store.service */ 4936);
+/* harmony import */ var src_app_services_api_host_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/api/host.service */ 535);
 /* harmony import */ var _service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @service */ 647);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/card */ 2156);
@@ -304,9 +313,9 @@ function SettingsComponent_mat_button_toggle_38_Template(rf, ctx) {
   }
   if (rf & 2) {
     const mode_r1 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("value", mode_r1.value);
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("value", mode_r1.key);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate1"](" ", mode_r1.key, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate1"](" ", mode_r1.value, " ");
   }
 }
 function isNonNullable(value) {
@@ -317,6 +326,7 @@ class SettingsComponent {
     if (value) {
       this.validateForm.reset(value);
     }
+    this._dashboardConfig = value;
   }
   get dashboardConfig() {
     return this._dashboardConfig;
@@ -328,16 +338,26 @@ class SettingsComponent {
     });
     dialogRef.afterClosed().pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.filter)(isNonNullable)).subscribe(result => {
       if (result) {
-        this.storeService.externalControlConfig = result;
+        this.hostService.externalControlConfig = result;
       }
     });
   }
   save() {
-    this.clashApiService.putConfig(this.validateForm.value).subscribe(res => {
+    const {
+      mode,
+      ...rest
+    } = this.validateForm.value;
+    this.clashApiService.patchConfig({
+      ...rest,
+      mode: _model__WEBPACK_IMPORTED_MODULE_0__.ClashMode[mode]
+    }).subscribe(res => {
       if (res === null) {
         this._snackBar.open('success', 'close', {
           duration: 3000
         });
+        // 重置表单默认值为此时ui中的数据,此操作将影响保存按钮的颜色
+        this.validateForm.reset(this.validateForm.value);
+        this.updateDashboardConfig.emit('');
       } else if (res === void 0) {
         this._snackBar.open('error', 'close', {
           duration: 3000
@@ -345,30 +365,37 @@ class SettingsComponent {
       }
     });
   }
+  KVCompareFn(a, b) {
+    return 0;
+  }
   ngOnInit() {}
-  constructor(fb, dialog, _snackBar, storeService, clashApiService) {
+  constructor(fb, dialog, _snackBar, hostService, clashApiService) {
     this.fb = fb;
     this.dialog = dialog;
     this._snackBar = _snackBar;
-    this.storeService = storeService;
+    this.hostService = hostService;
     this.clashApiService = clashApiService;
     this._dashboardConfig = null;
     this.externalControlConfig = null;
+    this.updateDashboardConfig = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.EventEmitter();
     this.clashMode = _model__WEBPACK_IMPORTED_MODULE_0__.ClashMode;
     this.change = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.EventEmitter();
     this.validateForm = this.fb.group({
       port: [null],
-      mode: [null],
       'socks-port': [null],
       'redir-port': [null],
+      'tproxy-port': [null],
       'mixed-port': [null],
       'allow-lan': [null],
-      'log-level': [null]
+      'bind-address': [null],
+      'log-level': [null],
+      mode: [null],
+      ipv6: [null]
     });
   }
 }
 SettingsComponent.ɵfac = function SettingsComponent_Factory(t) {
-  return new (t || SettingsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__.MatDialog), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__.MatSnackBar), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](src_app_services_core_store_store_service__WEBPACK_IMPORTED_MODULE_2__.StoreService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_service__WEBPACK_IMPORTED_MODULE_3__.ClashApiService));
+  return new (t || SettingsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__.MatDialog), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__.MatSnackBar), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](src_app_services_api_host_service__WEBPACK_IMPORTED_MODULE_2__.HostService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_service__WEBPACK_IMPORTED_MODULE_3__.ClashApiService));
 };
 SettingsComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({
   type: SettingsComponent,
@@ -378,11 +405,12 @@ SettingsComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4_
     externalControlConfig: "externalControlConfig"
   },
   outputs: {
+    updateDashboardConfig: "updateDashboardConfig",
     change: "change"
   },
   decls: 79,
-  vars: 7,
-  consts: [[1, "container"], [3, "formGroup"], [1, "flex-box"], [1, "flex-item"], [1, "label"], [1, "control"], ["labelPosition", "before", "disabled", ""], ["name", "fontStyle", "aria-label", "Font Style"], ["value", "bold"], ["value", "italic"], ["formControlName", "allow-lan", "labelPosition", "before"], ["formControlName", "mode"], [3, "value", 4, "ngFor", "ngForOf"], ["appearance", "fill"], ["formControlName", "socks-port", "matInput", "", "formControlName", "socks-port"], ["formControlName", "redir-port", "matInput", ""], ["formControlName", "mixed-port", "matInput", "", "formControlName", "mixed-port"], [1, "external-config", 3, "click"], [1, "save"], ["mat-fab", "", 3, "color", "click"], [3, "value"]],
+  vars: 8,
+  consts: [[1, "container"], [3, "formGroup"], [1, "flex-box"], [1, "flex-item"], [1, "label"], [1, "control"], ["labelPosition", "before", "disabled", ""], ["name", "fontStyle", "aria-label", "Font Style"], ["value", "bold"], ["value", "italic"], ["formControlName", "allow-lan", "labelPosition", "before"], ["formControlName", "mode"], [3, "value", 4, "ngFor", "ngForOf"], ["appearance", "fill"], ["matInput", "", "type", "number", "formControlName", "socks-port"], ["matInput", "", "type", "number", "formControlName", "redir-port"], ["matInput", "", "type", "number", "formControlName", "mixed-port"], [1, "external-config", 3, "click"], [1, "save"], ["mat-fab", "", 3, "color", "click"], [3, "value"]],
   template: function SettingsComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div", 0)(1, "form", 1)(2, "mat-card")(3, "mat-card-content")(4, "div", 2)(5, "div", 3)(6, "div", 4);
@@ -472,7 +500,7 @@ SettingsComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4_
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](1);
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("formGroup", ctx.validateForm);
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](37);
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpipeBind1"](39, 5, ctx.clashMode));
+      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpipeBind2"](39, 5, ctx.clashMode, ctx.KVCompareFn));
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](32);
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](ctx.externalControlConfig == null ? null : ctx.externalControlConfig.hostname);
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](4);
@@ -481,8 +509,48 @@ SettingsComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4_
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("color", ctx.validateForm.pristine ? "primary" : "accent");
     }
   },
-  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_9__.NgForOf, _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControlName, _angular_material_card__WEBPACK_IMPORTED_MODULE_10__.MatCard, _angular_material_card__WEBPACK_IMPORTED_MODULE_10__.MatCardContent, _angular_material_icon__WEBPACK_IMPORTED_MODULE_11__.MatIcon, _angular_material_input__WEBPACK_IMPORTED_MODULE_12__.MatInput, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__.MatLabel, _angular_material_button__WEBPACK_IMPORTED_MODULE_14__.MatFabButton, _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_15__.MatSlideToggle, _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_16__.MatButtonToggleGroup, _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_16__.MatButtonToggle, _angular_common__WEBPACK_IMPORTED_MODULE_9__.KeyValuePipe],
+  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_9__.NgForOf, _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.NumberValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControlName, _angular_material_card__WEBPACK_IMPORTED_MODULE_10__.MatCard, _angular_material_card__WEBPACK_IMPORTED_MODULE_10__.MatCardContent, _angular_material_icon__WEBPACK_IMPORTED_MODULE_11__.MatIcon, _angular_material_input__WEBPACK_IMPORTED_MODULE_12__.MatInput, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__.MatLabel, _angular_material_button__WEBPACK_IMPORTED_MODULE_14__.MatFabButton, _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_15__.MatSlideToggle, _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_16__.MatButtonToggleGroup, _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_16__.MatButtonToggle, _angular_common__WEBPACK_IMPORTED_MODULE_9__.KeyValuePipe],
   styles: [".flex-box[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.flex-item[_ngcontent-%COMP%] {\n  flex-grow: 0;\n  flex-shrink: 0;\n  flex-basis: calc(50% - 8px - 8px);\n  margin: 0 8px 8px 8px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.flex-item[_ngcontent-%COMP%]   .label[_ngcontent-%COMP%] {\n  font-size: 16px;\n  font-weight: 600;\n}\n.external-config[_ngcontent-%COMP%] {\n  font-size: 16px;\n  cursor: pointer;\n  text-decoration: underline;\n}\n\n.save[_ngcontent-%COMP%] {\n  margin-top: 24px;\n  display: flex;\n  justify-content: flex-end;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvZmVhdHVyZXMvY2xhc2gtc2V0dGluZ3MvY29tcG9uZW50cy9zZXR0aW5ncy9zZXR0aW5ncy5jb21wb25lbnQuc2NzcyIsIndlYnBhY2s6Ly8uL3NyYy9sYXlvdXQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQ0RFLGFBQUE7RUFDQSxlQUFBO0FEQ0Y7O0FBR0E7RUNPSSxZQUFBO0VBQ0EsY0FBQTtFQUNBLGlDQUFBO0VBRUYscUJBQUE7RUFDQSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSxtQkFBQTtBRFBGO0FDUUU7RUFDRSxlQUFBO0VBQ0EsZ0JBQUE7QUROSjtBQVBBO0VBQ0UsZUFBQTtFQUNBLGVBQUE7RUFDQSwwQkFBQTtBQVNGOztBQU5BO0VBQ0UsZ0JBQUE7RUFDQSxhQUFBO0VBQ0EseUJBQUE7QUFTRiIsInNvdXJjZXNDb250ZW50IjpbIkB1c2UgXCIvc3JjL2xheW91dC5zY3NzXCI7XG5cbi5mbGV4LWJveCB7XG4gIEBpbmNsdWRlIGxheW91dC5mbGV4LWJveDtcbn1cblxuLmZsZXgtaXRlbSB7XG4gIEBpbmNsdWRlIGxheW91dC5mbGV4LWl0ZW0oNTAlLCAwLCA4cHgsIDhweCwgOHB4KTtcbn1cblxuLmV4dGVybmFsLWNvbmZpZyB7XG4gIGZvbnQtc2l6ZTogMTZweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICB0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZTtcbn1cblxuLnNhdmUge1xuICBtYXJnaW4tdG9wOiAyNHB4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xufVxuIiwiQG1peGluIGZsZXgtYm94IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xufVxuXG5AbWl4aW4gZmxleC1pdGVtKFxuICAkd2lkdGg6IDEwMCUsXG4gICRtYXJnaW4tdG9wOiAwcHgsXG4gICRtYXJnaW4tcmlnaHQ6IDBweCxcbiAgJG1hcmdpbi1ib3R0b206IDBweCxcbiAgJG1hcmdpbi1sZWZ0OiAwcHhcbikge1xuICBmbGV4OiB7XG4gICAgZ3JvdzogMDtcbiAgICBzaHJpbms6IDA7XG4gICAgYmFzaXM6IGNhbGMoJHdpZHRoIC0gJG1hcmdpbi1sZWZ0IC0gJG1hcmdpbi1yaWdodCk7XG4gIH1cbiAgbWFyZ2luOiAkbWFyZ2luLXRvcCAkbWFyZ2luLXJpZ2h0ICRtYXJnaW4tYm90dG9tICRtYXJnaW4tbGVmdDtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAubGFiZWwge1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICBmb250LXdlaWdodDogNjAwO1xuICB9XG4gIC5jb250cm9sIHtcbiAgICAvLyBtYXJnaW4tcmlnaHQ6IDE2cHg7XG4gIH1cbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */"]
+});
+
+/***/ }),
+
+/***/ 4936:
+/*!******************************************************!*\
+  !*** ./src/app/services/core/store/store.service.ts ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "StoreService": () => (/* binding */ StoreService)
+/* harmony export */ });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 228);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 2673);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _api_clash_api_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../api/clash-api.service */ 210);
+
+
+
+class StoreService {
+  configExpired() {
+    this.dashboardConfigSubject.next('new config');
+  }
+  constructor(clashApiService) {
+    this.clashApiService = clashApiService;
+    this.dashboardConfigSubject = new rxjs__WEBPACK_IMPORTED_MODULE_1__.Subject();
+    this.dashboardConfig$ = this.dashboardConfigSubject.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.switchMap)(() => {
+      return this.clashApiService.fetchConfig();
+    }));
+  }
+}
+StoreService.ɵfac = function StoreService_Factory(t) {
+  return new (t || StoreService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_api_clash_api_service__WEBPACK_IMPORTED_MODULE_0__.ClashApiService));
+};
+StoreService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({
+  token: StoreService,
+  factory: StoreService.ɵfac,
+  providedIn: 'root'
 });
 
 /***/ })

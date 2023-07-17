@@ -97,13 +97,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 8987);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser/animations */ 7146);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 8987);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser/animations */ 7146);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app-routing.module */ 158);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 5041);
 /* harmony import */ var _interceptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./interceptors */ 8060);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _services_feature_custom_route_reuse_strategy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/feature/custom-route-reuse-strategy */ 502);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
+
+
 
 
 
@@ -115,18 +119,21 @@ class AppModule {}
 AppModule.ɵfac = function AppModule_Factory(t) {
   return new (t || AppModule)();
 };
-AppModule.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineNgModule"]({
+AppModule.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({
   type: AppModule,
   bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent]
 });
-AppModule.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjector"]({
-  providers: [_interceptors__WEBPACK_IMPORTED_MODULE_2__.httpInterceptorProviders],
-  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__.BrowserModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpClientModule, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__.BrowserAnimationsModule]
+AppModule.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjector"]({
+  providers: [_interceptors__WEBPACK_IMPORTED_MODULE_2__.httpInterceptorProviders, {
+    provide: _angular_router__WEBPACK_IMPORTED_MODULE_5__.RouteReuseStrategy,
+    useClass: _services_feature_custom_route_reuse_strategy__WEBPACK_IMPORTED_MODULE_3__.CustomRouteReuseStrategy
+  }],
+  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.BrowserModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpClientModule, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__.BrowserAnimationsModule]
 });
 (function () {
-  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵsetNgModuleScope"](AppModule, {
+  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵsetNgModuleScope"](AppModule, {
     declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
-    imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__.BrowserModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpClientModule, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__.BrowserAnimationsModule]
+    imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.BrowserModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpClientModule, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__.BrowserAnimationsModule]
   });
 })();
 
@@ -188,6 +195,45 @@ const httpInterceptorProviders = [{
   useClass: _error_interceptor__WEBPACK_IMPORTED_MODULE_0__.ErrorInterceptor,
   multi: true
 }];
+
+/***/ }),
+
+/***/ 502:
+/*!*****************************************************************!*\
+  !*** ./src/app/services/feature/custom-route-reuse-strategy.ts ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CustomRouteReuseStrategy": () => (/* binding */ CustomRouteReuseStrategy)
+/* harmony export */ });
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ 124);
+
+class CustomRouteReuseStrategy extends _angular_router__WEBPACK_IMPORTED_MODULE_0__.RouteReuseStrategy {
+  constructor() {
+    super();
+    console.log('24343243');
+  }
+  store(route, handle) {}
+  shouldAttach(route) {
+    console.log(`🍅 -> file: custom-route-reuse-strategy.service.ts:17 -> CustomRouteReuseStrategy -> overrideshouldAttach -> route:`, route);
+    return false;
+  }
+  shouldDetach(route) {
+    console.log(`🍅 -> file: custom-route-reuse-strategy.ts:20 -> CustomRouteReuseStrategy -> overrideshouldDetach -> route:`, route);
+    return false;
+  }
+  shouldReuseRoute(future, curr) {
+    console.log(`🍅 -> file: custom-route-reuse-strategy.ts:30 -> CustomRouteReuseStrategy -> curr:`, curr);
+    console.log(`🍅 -> file: custom-route-reuse-strategy.ts:30 -> CustomRouteReuseStrategy -> future:`, future);
+    return false;
+  }
+  retrieve(route) {
+    console.log(`🍅 -> file: custom-route-reuse-strategy.ts:41 -> CustomRouteReuseStrategy -> overrideretrieve -> route:`, route);
+    return null;
+  }
+}
 
 /***/ }),
 

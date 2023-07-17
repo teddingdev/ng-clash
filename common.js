@@ -55,6 +55,13 @@ class ClashApiService {
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(undefined);
     }));
   }
+  patchConfig(body) {
+    const url = `${this.hostname}/configs`;
+    return this.http.patch(url, body).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_1__.catchError)(error => {
+      console.log(error);
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(undefined);
+    }));
+  }
   fetchRules() {
     const url = `${this.hostname}/rules`;
     console.log(`🍅 -> file: clash-api.service.ts:58 -> ClashApiService -> fetchRules -> this.hostname:`, this.hostname);
