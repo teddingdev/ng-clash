@@ -3,6 +3,7 @@ import { Nav, NavValue } from '../../models/feature/menu.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LogService } from '../../services/feature/log.service';
 import { ConnectionService } from 'src/app/services/feature/connection.service';
+import { StoreService } from 'src/app/services/core/store/store.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,6 +44,16 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
+  'githubPages' =
+    'https://github.com/teddingdev/ng-clash/actions/workflows/github-pages.yml/badge.svg';
+  'pagesBuildDeployment' =
+    'https://github.com/teddingdev/ng-clash/actions/workflows/pages/pages-build-deployment/badge.svg';
+
+  clashVersion: {
+    premium: boolean;
+    version: string;
+  } | null = null;
+
   handleSideNavActive(menu: Nav) {
     this.navList = this.toggleSideNavActiveStatus(
       this.navList,
@@ -76,12 +87,17 @@ export class DashboardComponent implements OnInit {
     // todo 获取日志
     this.logService.initLog();
     this.connectionService.initConnection();
+    // 获取版本号
+    this.storeService.clashVersion$.subscribe(
+      (data) => (this.clashVersion = data)
+    );
   }
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private logService: LogService,
+    private storeService: StoreService,
     private connectionService: ConnectionService
   ) {}
 }

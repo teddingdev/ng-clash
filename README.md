@@ -1,3 +1,6 @@
+[![github-pages](https://github.com/teddingdev/ng-clash/actions/workflows/github-pages.yml/badge.svg)](https://github.com/teddingdev/ng-clash/actions/workflows/github-pages.yml)
+[![pages-build-deployment](https://github.com/teddingdev/ng-clash/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/teddingdev/ng-clash/actions/workflows/pages/pages-build-deployment)
+
 # NgClash
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.

@@ -1,10 +1,14 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>
-      <app-loading></app-loading>Menu
-    </mat-toolbar>
-    <ng-content></ng-content>
+    <div class="sidenav-content">
+      <mat-toolbar>
+        <app-loading></app-loading>
+        <div>Menu</div>
+      </mat-toolbar>
+      <ng-content select="[AppMenu]"></ng-content>
+      <ng-content select="[AppExtra]"></ng-content>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary" class="toolbar">
@@ -16,7 +20,7 @@
     </mat-toolbar>
     <!-- Add Content Here -->
     <div class="content">
-      <router-outlet></router-outlet>
+      <ng-content select="[AppContent]"></ng-content>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

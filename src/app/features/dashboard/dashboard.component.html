@@ -1,3 +1,20 @@
 <app-layout>
-  <app-menu [navList]="navList" (onChange)="handleSideNavActive($event)"></app-menu>
+  <!-- 菜单 -->
+  <ng-container AppMenu>
+    <app-menu AppMenu [navList]="navList" (onChange)="handleSideNavActive($event)"></app-menu>
+    <div class="app-extra">
+      <div class="version">
+        <div>CLASH VERSION</div>
+        <div> {{ clashVersion?.version }} </div>
+        <div *ngIf="clashVersion?.premium">
+          <mat-chip [highlighted]="true">Premium</mat-chip>
+        </div>
+      </div>
+      <div class="CI-status">
+        <img [src]="githubPages" alt="github-pages-badge.svg">
+      </div>
+    </div>
+  </ng-container>
+  <!-- APP -->
+  <router-outlet AppContent></router-outlet>
 </app-layout>

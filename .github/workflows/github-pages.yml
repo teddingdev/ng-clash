@@ -75,7 +75,7 @@ jobs:
           "device_key": "bark",
           "icon": "https://github.com/fluidicon.png",
           "group": "Github-actions[bot]",
-          "url": "https://github.com/teddingdev/teddingdev.github.io/actions"
+          "url": "https://github.com/teddingdev/ng-clash/actions"
           }'
 
       - name: DingTalk

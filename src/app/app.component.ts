@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = '';
+  GITHUB_REPOSITORY='https://github.com/teddingdev/ng-clash'
 }

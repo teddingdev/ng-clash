@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, of } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 
 import { HostService } from './host.service';
 
@@ -75,6 +75,14 @@ export class ClashApiService {
       url
     );
     return this.http.get<Rules>(url);
+  }
+
+  fetchVersion() {
+    const url = `${this.hostname}/version`;
+    return this.http.get<{
+      premium: boolean;
+      version: string;
+    }>(url);
   }
 
   constructor(private http: HttpClient, private hostService: HostService) {}

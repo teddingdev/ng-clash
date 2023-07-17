@@ -15,9 +15,13 @@ export class StoreService {
     })
   );
 
+  clashVersion$ = this.clashApiService.fetchVersion();
+
   configExpired() {
     this.dashboardConfigSubject.next('new config');
   }
+
+  fetchVersion() {}
 
   constructor(private clashApiService: ClashApiService) {}
 }
