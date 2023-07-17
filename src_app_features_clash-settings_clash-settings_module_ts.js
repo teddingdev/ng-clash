@@ -513,46 +513,6 @@ SettingsComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4_
   styles: [".flex-box[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.flex-item[_ngcontent-%COMP%] {\n  flex-grow: 0;\n  flex-shrink: 0;\n  flex-basis: calc(50% - 8px - 8px);\n  margin: 0 8px 8px 8px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.flex-item[_ngcontent-%COMP%]   .label[_ngcontent-%COMP%] {\n  font-size: 16px;\n  font-weight: 600;\n}\n.external-config[_ngcontent-%COMP%] {\n  font-size: 16px;\n  cursor: pointer;\n  text-decoration: underline;\n}\n\n.save[_ngcontent-%COMP%] {\n  margin-top: 24px;\n  display: flex;\n  justify-content: flex-end;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvZmVhdHVyZXMvY2xhc2gtc2V0dGluZ3MvY29tcG9uZW50cy9zZXR0aW5ncy9zZXR0aW5ncy5jb21wb25lbnQuc2NzcyIsIndlYnBhY2s6Ly8uL3NyYy9sYXlvdXQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQ0RFLGFBQUE7RUFDQSxlQUFBO0FEQ0Y7O0FBR0E7RUNPSSxZQUFBO0VBQ0EsY0FBQTtFQUNBLGlDQUFBO0VBRUYscUJBQUE7RUFDQSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSxtQkFBQTtBRFBGO0FDUUU7RUFDRSxlQUFBO0VBQ0EsZ0JBQUE7QUROSjtBQVBBO0VBQ0UsZUFBQTtFQUNBLGVBQUE7RUFDQSwwQkFBQTtBQVNGOztBQU5BO0VBQ0UsZ0JBQUE7RUFDQSxhQUFBO0VBQ0EseUJBQUE7QUFTRiIsInNvdXJjZXNDb250ZW50IjpbIkB1c2UgXCIvc3JjL2xheW91dC5zY3NzXCI7XG5cbi5mbGV4LWJveCB7XG4gIEBpbmNsdWRlIGxheW91dC5mbGV4LWJveDtcbn1cblxuLmZsZXgtaXRlbSB7XG4gIEBpbmNsdWRlIGxheW91dC5mbGV4LWl0ZW0oNTAlLCAwLCA4cHgsIDhweCwgOHB4KTtcbn1cblxuLmV4dGVybmFsLWNvbmZpZyB7XG4gIGZvbnQtc2l6ZTogMTZweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICB0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZTtcbn1cblxuLnNhdmUge1xuICBtYXJnaW4tdG9wOiAyNHB4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xufVxuIiwiQG1peGluIGZsZXgtYm94IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xufVxuXG5AbWl4aW4gZmxleC1pdGVtKFxuICAkd2lkdGg6IDEwMCUsXG4gICRtYXJnaW4tdG9wOiAwcHgsXG4gICRtYXJnaW4tcmlnaHQ6IDBweCxcbiAgJG1hcmdpbi1ib3R0b206IDBweCxcbiAgJG1hcmdpbi1sZWZ0OiAwcHhcbikge1xuICBmbGV4OiB7XG4gICAgZ3JvdzogMDtcbiAgICBzaHJpbms6IDA7XG4gICAgYmFzaXM6IGNhbGMoJHdpZHRoIC0gJG1hcmdpbi1sZWZ0IC0gJG1hcmdpbi1yaWdodCk7XG4gIH1cbiAgbWFyZ2luOiAkbWFyZ2luLXRvcCAkbWFyZ2luLXJpZ2h0ICRtYXJnaW4tYm90dG9tICRtYXJnaW4tbGVmdDtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAubGFiZWwge1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICBmb250LXdlaWdodDogNjAwO1xuICB9XG4gIC5jb250cm9sIHtcbiAgICAvLyBtYXJnaW4tcmlnaHQ6IDE2cHg7XG4gIH1cbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */"]
 });
 
-/***/ }),
-
-/***/ 4936:
-/*!******************************************************!*\
-  !*** ./src/app/services/core/store/store.service.ts ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "StoreService": () => (/* binding */ StoreService)
-/* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 228);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 2673);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _api_clash_api_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../api/clash-api.service */ 210);
-
-
-
-class StoreService {
-  configExpired() {
-    this.dashboardConfigSubject.next('new config');
-  }
-  constructor(clashApiService) {
-    this.clashApiService = clashApiService;
-    this.dashboardConfigSubject = new rxjs__WEBPACK_IMPORTED_MODULE_1__.Subject();
-    this.dashboardConfig$ = this.dashboardConfigSubject.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.switchMap)(() => {
-      return this.clashApiService.fetchConfig();
-    }));
-  }
-}
-StoreService.ɵfac = function StoreService_Factory(t) {
-  return new (t || StoreService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_api_clash_api_service__WEBPACK_IMPORTED_MODULE_0__.ClashApiService));
-};
-StoreService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({
-  token: StoreService,
-  factory: StoreService.ɵfac,
-  providedIn: 'root'
-});
-
 /***/ })
 
 }]);

@@ -1766,17 +1766,25 @@ textarea.cdk-textarea-autosize-measuring-firefox {
 }
 
 /* You can add global styles to this file, and also import other style files */
+.github-corner {
+  background-color: #3f51b5;
+}
+
 .external-config {
   color: #7986cb;
+}
+
+.app-extra .version {
+  color: #3f51b5;
+}
+
+.proxy-card:hover {
+  box-shadow: 0 0 8px 4px #3f51b5;
 }
 
 .policy-badge div {
   color: #fff;
   background-color: #f06292;
-}
-
-.proxy-card:hover {
-  box-shadow: 0 0 8px 4px #3f51b5;
 }
 
 .head {
