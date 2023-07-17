@@ -1,11 +1,14 @@
 export interface Config {
   port: number;
-  mode: ClashMode;
   'socks-port': number;
   'redir-port': number;
+  'tproxy-port': number;
   'mixed-port': number;
   'allow-lan': boolean;
+  'bind-address': string;
+  mode: keyof typeof ClashMode;
   'log-level': string;
+  ipv6: boolean;
 }
 
 export interface ExternalControlConfig {
@@ -15,12 +18,12 @@ export interface ExternalControlConfig {
 }
 
 export enum ClashMode {
-  /** 规则 */
-  'RULE' = 'rule',
-  /** 脚本 */
-  'SCRIPT' = 'script',
-  /** 直连 */
-  'DIRECT' = 'direct',
   /** 全局 */
-  'GLOBAL' = 'global',
+  'global' = 'Global',
+  /** 规则 */
+  'rule' = 'Rule',
+  /** 脚本 */
+  'script' = 'Script',
+  /** 直连 */
+  'direct' = 'Direct',
 }

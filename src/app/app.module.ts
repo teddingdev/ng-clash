@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { httpInterceptorProviders } from './interceptors';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomRouteReuseStrategy } from './services/feature/custom-route-reuse-strategy';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +18,13 @@ import { httpInterceptorProviders } from './interceptors';
     HttpClientModule,
     BrowserAnimationsModule,
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    httpInterceptorProviders,
+    {
+      provide: RouteReuseStrategy,
+      useClass: CustomRouteReuseStrategy,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -44,8 +44,8 @@
             <div class="label">代理模式</div>
             <div class="control">
               <mat-button-toggle-group formControlName="mode">
-                <mat-button-toggle *ngFor="let mode of clashMode | keyvalue" [value]="mode.value">
-                  {{ mode.key }}
+                <mat-button-toggle *ngFor="let mode of clashMode | keyvalue : KVCompareFn" [value]="mode.key">
+                  {{ mode.value }}
                 </mat-button-toggle>
               </mat-button-toggle-group>
             </div>
@@ -55,7 +55,7 @@
             <div class="control">
               <mat-form-field appearance="fill">
                 <mat-label>Socks5 代理端口</mat-label>
-                <input formControlName="socks-port" matInput formControlName="socks-port" />
+                <input matInput type="number" formControlName="socks-port" />
               </mat-form-field>
             </div>
           </div>
@@ -64,7 +64,7 @@
             <div class="control">
               <mat-form-field appearance="fill">
                 <mat-label>HTTP 代理端口</mat-label>
-                <input formControlName="redir-port" matInput />
+                <input matInput type="number" formControlName="redir-port" />
               </mat-form-field>
             </div>
           </div>
@@ -73,7 +73,7 @@
             <div class="control">
               <mat-form-field appearance="fill">
                 <mat-label>混合代理端口</mat-label>
-                <input formControlName="mixed-port" matInput formControlName="mixed-port" />
+                <input matInput type="number" formControlName="mixed-port" />
               </mat-form-field>
             </div>
           </div>

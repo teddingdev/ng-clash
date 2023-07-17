@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, RouteReuseStrategy } from '@angular/router';
 import { Log } from '@model';
-import { map, scan } from 'rxjs/operators';
+import { scan } from 'rxjs/operators';
 import { LogService } from 'src/app/services/feature/log.service';
 
 const scanLog = () =>
@@ -28,6 +29,5 @@ export class SysLogComponent {
     return this.logService.errorLog;
   }
 
-  constructor(private logService: LogService) {
-  }
+  constructor(private logService: LogService, private route: ActivatedRoute) {}
 }

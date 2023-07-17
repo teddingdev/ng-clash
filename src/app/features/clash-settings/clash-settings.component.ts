@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Config, ExternalControlConfig } from '@model';
-import { ClashApiService } from '@service';
-import { Observable } from 'rxjs';
+
+import { HostService } from 'src/app/services/api/host.service';
 import { StoreService } from 'src/app/services/core/store/store.service';
+
+import { Config } from '@model';
 
 @Component({
   selector: 'app-clash-settings',
@@ -10,19 +11,27 @@ import { StoreService } from 'src/app/services/core/store/store.service';
   styleUrls: ['./clash-settings.component.scss'],
 })
 export class ClashSettingsComponent implements OnInit {
-  dashboardConfig$: Observable<Config>;
+  dashboardConfig: Config | null = null;
+
   /** 外部控制设置 */
   get externalControlConfig() {
-    return this.storeService.externalControlConfig;
+    return this.hostService.externalControlConfig;
   }
 
-  ngClashConfig: any | null;
-  ngOnInit(): void {}
+  updateDashboardConfig() {
+    this.storeService.configExpired();
+  }
+
+  ngOnInit(): void {
+    this.updateDashboardConfig();
+  }
 
   constructor(
-    private storeService: StoreService,
-    private clashApiService: ClashApiService
+    private hostService: HostService,
+    private storeService: StoreService
   ) {
-    this.dashboardConfig$ = this.clashApiService.fetchConfig();
+    this.storeService.dashboardConfig$.subscribe((config) => {
+      this.dashboardConfig = config;
+    });
   }
 }

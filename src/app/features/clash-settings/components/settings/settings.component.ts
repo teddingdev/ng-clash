@@ -10,6 +10,8 @@ import { SettingsControlComponent } from '../settings-control/settings-control.c
 import { StoreService } from 'src/app/services/core/store/store.service';
 import { filter } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { KeyValue } from '@angular/common';
+import { HostService } from 'src/app/services/api/host.service';
 
 export interface Tile {
   color: string;
@@ -33,6 +35,7 @@ export class SettingsComponent implements OnInit {
     if (value) {
       this.validateForm.reset(value);
     }
+    this._dashboardConfig = value;
   }
 
   get dashboardConfig() {
@@ -43,6 +46,9 @@ export class SettingsComponent implements OnInit {
 
   @Input()
   externalControlConfig: ExternalControlConfig | null = null;
+
+  @Output()
+  updateDashboardConfig = new EventEmitter();
 
   clashMode = ClashMode;
   validateForm: FormGroup;
@@ -64,19 +70,26 @@ export class SettingsComponent implements OnInit {
       .pipe(filter(isNonNullable))
       .subscribe((result) => {
         if (result) {
-          this.storeService.externalControlConfig = result;
+          this.hostService.externalControlConfig = result;
         }
       });
   }
 
   save() {
+    const { mode, ...rest } = this.validateForm.value;
     this.clashApiService
-      .putConfig(this.validateForm.value)
+      .patchConfig({
+        ...rest,
+        mode: ClashMode[mode as keyof typeof ClashMode],
+      })
       .subscribe((res) => {
         if (res === null) {
           this._snackBar.open('success', 'close', {
             duration: 3000,
           });
+          // 重置表单默认值为此时ui中的数据,此操作将影响保存按钮的颜色
+          this.validateForm.reset(this.validateForm.value);
+          this.updateDashboardConfig.emit('');
         } else if (res === void 0) {
           this._snackBar.open('error', 'close', {
             duration: 3000,
@@ -85,23 +98,33 @@ export class SettingsComponent implements OnInit {
       });
   }
 
+  KVCompareFn<K extends string, V extends string>(
+    a: KeyValue<K, V>,
+    b: KeyValue<K, V>
+  ): number {
+    return 0;
+  }
+
   ngOnInit(): void {}
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private storeService: StoreService,
+    private hostService: HostService,
     private clashApiService: ClashApiService
   ) {
     this.validateForm = this.fb.group({
       port: [null],
-      mode: [null],
       'socks-port': [null],
       'redir-port': [null],
+      'tproxy-port': [null],
       'mixed-port': [null],
       'allow-lan': [null],
+      'bind-address': [null],
       'log-level': [null],
+      mode: [null],
+      ipv6: [null],
     });
   }
 }

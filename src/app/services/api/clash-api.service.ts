@@ -1,8 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Config, Proxies, ProxyProviders, Rules } from '@model';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, of } from 'rxjs';
+
 import { HostService } from './host.service';
-import { catchError, map, of } from 'rxjs';
+
+import { Config, Proxies, ProxyProviders, Rules } from '@model';
 
 @Injectable({
   providedIn: 'root',
@@ -45,6 +47,16 @@ export class ClashApiService {
   putConfig(body: Partial<Config>) {
     const url = `${this.hostname}/configs`;
     return this.http.put<null>(url, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.log(error);
+        return of(undefined);
+      })
+    );
+  }
+
+  patchConfig(body: Partial<Config>) {
+    const url = `${this.hostname}/configs`;
+    return this.http.patch<null>(url, body).pipe(
       catchError((error: HttpErrorResponse) => {
         console.log(error);
         return of(undefined);
