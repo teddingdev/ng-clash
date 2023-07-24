@@ -65,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class AppComponent {
   constructor() {
-    this.title = '';
+    this.title = 'ng-clash';
     this.GITHUB_REPOSITORY = 'https://github.com/teddingdev/ng-clash';
   }
 }

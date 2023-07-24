@@ -1050,9 +1050,7 @@ class WebsocketService {
       // this.wsHeartBeatStop();
     };
 
-    this.onmessage = data => {
-      console.log(`🍅 -> file: websocket.service.ts:67 -> WebsocketService -> data:`, data);
-    };
+    this.onmessage = data => {};
     this.onerror = error => {
       console.log(error);
     };

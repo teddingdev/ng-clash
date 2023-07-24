@@ -101,10 +101,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 4503);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var src_app_services_feature_log_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/services/feature/log.service */ 8512);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 4666);
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/tabs */ 5892);
-
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 4666);
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/tabs */ 5892);
 
 
 
@@ -199,13 +197,12 @@ class SysLogComponent {
   get errorLog() {
     return this.logService.errorLog;
   }
-  constructor(logService, route) {
+  constructor(logService) {
     this.logService = logService;
-    this.route = route;
   }
 }
 SysLogComponent.ɵfac = function SysLogComponent_Factory(t) {
-  return new (t || SysLogComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_services_feature_log_service__WEBPACK_IMPORTED_MODULE_0__.LogService), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__.ActivatedRoute));
+  return new (t || SysLogComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_services_feature_log_service__WEBPACK_IMPORTED_MODULE_0__.LogService));
 };
 SysLogComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
   type: SysLogComponent,
@@ -239,7 +236,7 @@ SysLogComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__[
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx.errorLog);
     }
   },
-  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.NgForOf, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_5__.MatTab, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_5__.MatTabGroup, _angular_common__WEBPACK_IMPORTED_MODULE_4__.DatePipe],
+  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.NgForOf, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_4__.MatTab, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_4__.MatTabGroup, _angular_common__WEBPACK_IMPORTED_MODULE_3__.DatePipe],
   styles: [".log[_ngcontent-%COMP%] {\n  display: flex;\n  color: rgba(0, 0, 0, 0.6901960784);\n  border-bottom: 1px dotted rgba(0, 0, 0, 0.6901960784);\n  padding: 8px 0;\n}\n.log-type[_ngcontent-%COMP%] {\n  display: flex;\n  flex: 0 0 auto;\n  color: #3f51b5;\n  align-items: center;\n}\n.log-payload[_ngcontent-%COMP%] {\n  flex: 1 1 auto;\n  padding: 0 8px;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvZmVhdHVyZXMvY2xhc2gtbG9ncy9jb21wb25lbnRzL3N5cy1sb2cvc3lzLWxvZy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQUE7RUFDQSxrQ0FBQTtFQUNBLHFEQUFBO0VBQ0EsY0FBQTtBQUNGO0FBQ0U7RUFDRSxhQUFBO0VBQ0EsY0FBQTtFQUNBLGNBQUE7RUFDQSxtQkFBQTtBQUNKO0FBRUU7RUFDRSxjQUFBO0VBQ0EsY0FBQTtBQUFKIiwic291cmNlc0NvbnRlbnQiOlsiLmxvZyB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGNvbG9yOiAjMDAwMDAwQjA7XG4gIGJvcmRlci1ib3R0b206IDFweCBkb3R0ZWQgIzAwMDAwMEIwO1xuICBwYWRkaW5nOiA4cHggMDtcblxuICAmLXR5cGUge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleDogMCAwIGF1dG87XG4gICAgY29sb3I6ICMzZjUxYjU7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgfVxuXG4gICYtcGF5bG9hZCB7XG4gICAgZmxleDogMSAxIGF1dG87XG4gICAgcGFkZGluZzogMCA4cHg7XG4gIH1cbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */"]
 });
 
