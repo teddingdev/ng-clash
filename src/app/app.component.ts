@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = '';
+  title = 'ng-clash';
   GITHUB_REPOSITORY='https://github.com/teddingdev/ng-clash'
 }

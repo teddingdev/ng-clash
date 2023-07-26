@@ -13,4 +13,4 @@ import { CoreModule } from 'src/app/core/core.module';
   declarations: [LayoutComponent, MenuComponent, DashboardComponent],
   imports: [CommonModule, DashboardRoutingModule, MaterialModule, CoreModule],
 })
-export class DashboardModule {}
+export class DashboardModule { }

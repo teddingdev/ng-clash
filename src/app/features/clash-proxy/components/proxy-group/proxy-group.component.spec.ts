@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProxyGroupComponent } from './proxy-group.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 describe('ProxyGroupComponent', () => {
   let component: ProxyGroupComponent;
@@ -8,9 +9,9 @@ describe('ProxyGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProxyGroupComponent ]
-    })
-    .compileComponents();
+      declarations: [ProxyGroupComponent],
+      imports: [MatExpansionModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProxyGroupComponent);
     component = fixture.componentInstance;

@@ -38,12 +38,7 @@ export class WebsocketService {
     // this.wsHeartBeatStop();
   };
 
-  onmessage = (data: any) => {
-    console.log(
-      `🍅 -> file: websocket.service.ts:67 -> WebsocketService -> data:`,
-      data
-    );
-  };
+  onmessage = (data: any) => {};
 
   onerror = (error: any) => {
     console.log(error);

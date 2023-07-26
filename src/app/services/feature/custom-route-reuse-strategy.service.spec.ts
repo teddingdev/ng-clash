@@ -6,7 +6,13 @@ describe('CustomRouteReuseStrategyService', () => {
   let service: CustomRouteReuseStrategy;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: CustomRouteReuseStrategy,
+        },
+      ],
+    });
     service = TestBed.inject(CustomRouteReuseStrategy);
   });
 

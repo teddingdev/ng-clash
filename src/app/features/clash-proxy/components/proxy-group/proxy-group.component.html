@@ -1,5 +1,5 @@
 <ng-content></ng-content>
-<mat-accordion multi>
+<div mat-accordion multi>
   <mat-expansion-panel *ngFor="let policyGroup of policyGroups;let i = index" #panel>
     <mat-expansion-panel-header>
       <mat-panel-title class="title">
@@ -25,4 +25,4 @@
       </mat-chip-option>
     </mat-chip-listbox>
   </mat-expansion-panel>
-</mat-accordion>
+</div>

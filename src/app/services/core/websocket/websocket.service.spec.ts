@@ -6,7 +6,14 @@ describe('WebsocketService', () => {
   let service: WebsocketService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: WebsocketService,
+          useValue: WebsocketService,
+        },
+      ],
+    });
     service = TestBed.inject(WebsocketService);
   });
 

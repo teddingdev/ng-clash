@@ -29,5 +29,5 @@ export class SysLogComponent {
     return this.logService.errorLog;
   }
 
-  constructor(private logService: LogService, private route: ActivatedRoute) {}
+  constructor(private logService: LogService) {}
 }

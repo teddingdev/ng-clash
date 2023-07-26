@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UnknownComponent } from './unknown.component';
+import { RouterModule } from '@angular/router';
 
 describe('UnusualComponent', () => {
   let component: UnknownComponent;
@@ -8,9 +9,9 @@ describe('UnusualComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UnknownComponent ]
-    })
-    .compileComponents();
+      declarations: [UnknownComponent],
+      imports: [RouterModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UnknownComponent);
     component = fixture.componentInstance;

@@ -4,10 +4,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenav, MatSidenavContainer, MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 
 import { LayoutComponent } from './layout.component';
+import { LoadingComponent } from 'src/app/core/components/loading/loading.component';
+import { CoreModule } from 'src/app/core/core.module';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -15,7 +17,7 @@ describe('LayoutComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [LayoutComponent],
+      declarations: [LayoutComponent, MatToolbar, LoadingComponent, MatSidenav, MatSidenavContent, MatSidenavContainer],
       imports: [
         NoopAnimationsModule,
         LayoutModule,
@@ -24,7 +26,8 @@ describe('LayoutComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-      ]
+        CoreModule,
+      ],
     }).compileComponents();
   }));
 
