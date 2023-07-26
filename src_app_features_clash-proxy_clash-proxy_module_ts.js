@@ -419,12 +419,12 @@ ProxyGroupComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_
   ngContentSelectors: _c0,
   decls: 3,
   vars: 1,
-  consts: [["multi", ""], [4, "ngFor", "ngForOf"], ["panel", ""], [1, "title"], [1, "policy-badge"], [1, "policy-name"], [1, "policy-type"], [1, "separator"], [1, "selected"], ["selected", "", 3, "selectable", "disabled"], [3, "selected", "selectable", "click", 4, "ngFor", "ngForOf"], [3, "selected", "selectable", "click"]],
+  consts: [["mat-accordion", "", "multi", ""], [4, "ngFor", "ngForOf"], ["panel", ""], [1, "title"], [1, "policy-badge"], [1, "policy-name"], [1, "policy-type"], [1, "separator"], [1, "selected"], ["selected", "", 3, "selectable", "disabled"], [3, "selected", "selectable", "click", 4, "ngFor", "ngForOf"], [3, "selected", "selectable", "click"]],
   template: function ProxyGroupComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojectionDef"]();
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojection"](0);
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-accordion", 0);
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 0);
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, ProxyGroupComponent_mat_expansion_panel_2_Template, 19, 7, "mat-expansion-panel", 1);
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     }
@@ -433,7 +433,7 @@ ProxyGroupComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.policyGroups);
     }
   },
-  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_2__.NgForOf, _angular_material_chips__WEBPACK_IMPORTED_MODULE_3__.MatChipListbox, _angular_material_chips__WEBPACK_IMPORTED_MODULE_3__.MatChipOption, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_1__.MatAccordion, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_1__.MatExpansionPanel, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_1__.MatExpansionPanelHeader, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_1__.MatExpansionPanelTitle, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_1__.MatExpansionPanelDescription],
+  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_2__.NgForOf, _angular_material_chips__WEBPACK_IMPORTED_MODULE_3__.MatChipListbox, _angular_material_chips__WEBPACK_IMPORTED_MODULE_3__.MatChipOption, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_1__.MatExpansionPanel, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_1__.MatExpansionPanelHeader, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_1__.MatExpansionPanelTitle, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_1__.MatExpansionPanelDescription],
   styles: [".title[_ngcontent-%COMP%] {\n  display: flex;\n}\n\n.policy-name[_ngcontent-%COMP%] {\n  flex: 1 0 auto;\n}\n\n.policy-badge[_ngcontent-%COMP%] {\n  flex: 0 0 48px;\n}\n.policy-badge[_ngcontent-%COMP%]   div[_ngcontent-%COMP%] {\n  display: block;\n  padding: 4px;\n  width: 16px;\n  height: 16px;\n  border-radius: 40px;\n  line-height: 16px;\n  text-align: center;\n  font-size: 14px;\n  overflow: hidden;\n}\n\n.policy-type[_ngcontent-%COMP%] {\n  font-size: 16px;\n}\n\n.separator[_ngcontent-%COMP%] {\n  margin: 0 8px;\n}\n\n.selected-light[_ngcontent-%COMP%] {\n  opacity: 0.3;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvZmVhdHVyZXMvY2xhc2gtcHJveHkvY29tcG9uZW50cy9wcm94eS1ncm91cC9wcm94eS1ncm91cC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQUE7QUFDRjs7QUFFQTtFQUVFLGNBQUE7QUFBRjs7QUFHQTtFQWFFLGNBQUE7QUFaRjtBQUNFO0VBQ0UsY0FBQTtFQUNBLFlBQUE7RUFDQSxXQUpNO0VBS04sWUFMTTtFQU1OLG1CQUFBO0VBQ0EsaUJBUE07RUFRTixrQkFBQTtFQUNBLGVBQUE7RUFDQSxnQkFBQTtBQUNKOztBQUlBO0VBRUUsZUFBQTtBQUZGOztBQUtBO0VBQ0UsYUFBQTtBQUZGOztBQU1FO0VBQ0UsWUFBQTtBQUhKIiwic291cmNlc0NvbnRlbnQiOlsiLnRpdGxlIHtcbiAgZGlzcGxheTogZmxleDtcbn1cblxuLnBvbGljeS1uYW1lIHtcbiAgLy8gZm9udC13ZWlnaHQ6IDUwMDtcbiAgZmxleDogMSAwIGF1dG87XG59XG5cbi5wb2xpY3ktYmFkZ2Uge1xuICAkd2lkdGg6IDE2cHg7XG4gIGRpdiB7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gICAgcGFkZGluZzogNHB4O1xuICAgIHdpZHRoOiAkd2lkdGg7XG4gICAgaGVpZ2h0OiAkd2lkdGg7XG4gICAgYm9yZGVyLXJhZGl1czogY2FsYygkd2lkdGggKiAyICsgNHB4ICogMik7XG4gICAgbGluZS1oZWlnaHQ6ICR3aWR0aDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZm9udC1zaXplOiAxNHB4O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gIH1cbiAgZmxleDogMCAwIGNhbGMoJHdpZHRoICogMyk7XG59XG5cbi5wb2xpY3ktdHlwZSB7XG4gIC8vIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIGZvbnQtc2l6ZTogMTZweDtcbn1cblxuLnNlcGFyYXRvciB7XG4gIG1hcmdpbjogMCA4cHg7XG59XG5cbi5zZWxlY3RlZCB7XG4gICYtbGlnaHQge1xuICAgIG9wYWNpdHk6IDAuMztcbiAgfVxufVxuIl0sInNvdXJjZVJvb3QiOiIifQ== */"]
 });
 

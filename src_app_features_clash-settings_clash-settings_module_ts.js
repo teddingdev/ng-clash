@@ -203,7 +203,7 @@ SettingsControlComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MO
   selectors: [["app-settings-control"]],
   decls: 39,
   vars: 1,
-  consts: [[3, "formGroup"], [1, "flex-box"], [1, "flex-item"], [1, "label"], [1, "control"], ["appearance", "fill"], ["matInput", "", "formControlName", "hostname"], ["matInput", "", "formControlName", "port"], ["matInput", "", "formControlName", "key"], [1, "tip"], [1, "actions"], ["type", "button", "mat-raised-button", "", 1, "action", 3, "click"], ["type", "button", "mat-raised-button", "", "color", "primary", 1, "action", 3, "click"]],
+  consts: [[3, "formGroup"], [1, "flex-box"], [1, "flex-item"], [1, "label"], [1, "control"], ["mat-form-field", "", "appearance", "fill"], ["matInput", "", "formControlName", "hostname"], ["matInput", "", "formControlName", "port"], ["matInput", "", "formControlName", "key"], [1, "tip"], [1, "actions"], ["type", "button", "mat-raised-button", "", 1, "action", 3, "click"], ["type", "button", "mat-raised-button", "", "color", "primary", 1, "action", 3, "click"]],
   template: function SettingsControlComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-card")(1, "mat-card-header")(2, "mat-card-title");
@@ -212,7 +212,7 @@ SettingsControlComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MO
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "mat-card-content")(5, "form", 0)(6, "div", 1)(7, "div", 2)(8, "div", 3);
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "\u4E3B\u673A\u540D");
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "div", 4)(11, "mat-form-field", 5)(12, "mat-label");
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "div", 4)(11, "div", 5)(12, "mat-label");
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, "\u4E3B\u673A\u540D");
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](14, "input", 6);
@@ -220,7 +220,7 @@ SettingsControlComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MO
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "div", 2)(16, "div", 3);
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, "\u7AEF\u53E3");
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "div", 4)(19, "mat-form-field", 5)(20, "mat-label");
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "div", 4)(19, "div", 5)(20, "mat-label");
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, "\u7AEF\u53E3");
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](22, "input", 7);
@@ -228,7 +228,7 @@ SettingsControlComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MO
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "div", 2)(24, "div", 3);
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](25, "\u5BC6\u94A5");
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "div", 4)(27, "mat-form-field", 5)(28, "mat-label");
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "div", 4)(27, "div", 5)(28, "mat-label");
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](29, "\u5BC6\u94A5");
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](30, "input", 8);
@@ -254,7 +254,7 @@ SettingsControlComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MO
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("formGroup", ctx.validateForm);
     }
   },
-  dependencies: [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.FormControlName, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCard, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCardActions, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCardContent, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCardFooter, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCardHeader, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCardTitle, _angular_material_input__WEBPACK_IMPORTED_MODULE_4__.MatInput, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_5__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_5__.MatLabel, _angular_material_button__WEBPACK_IMPORTED_MODULE_6__.MatButton],
+  dependencies: [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.FormControlName, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCard, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCardActions, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCardContent, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCardFooter, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCardHeader, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__.MatCardTitle, _angular_material_input__WEBPACK_IMPORTED_MODULE_4__.MatInput, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_5__.MatLabel, _angular_material_button__WEBPACK_IMPORTED_MODULE_6__.MatButton],
   styles: [".flex-box[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.flex-item[_ngcontent-%COMP%] {\n  flex-grow: 0;\n  flex-shrink: 0;\n  flex-basis: calc(100% - 0px - 0px);\n  margin: 0px 0px 0px 0px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.flex-item[_ngcontent-%COMP%]   .label[_ngcontent-%COMP%] {\n  font-size: 16px;\n}\n\n.tip[_ngcontent-%COMP%] {\n  margin: 8px 16px;\n  padding: 8px 16px;\n  border-left: 4px solid;\n  color: rgba(0, 0, 0, 0.3137254902);\n}\n\n.actions[_ngcontent-%COMP%] {\n  justify-content: flex-end;\n}\n\n.action[_ngcontent-%COMP%] {\n  margin: 0 8px;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvZmVhdHVyZXMvY2xhc2gtc2V0dGluZ3MvY29tcG9uZW50cy9zZXR0aW5ncy1jb250cm9sL3NldHRpbmdzLWNvbnRyb2wuY29tcG9uZW50LnNjc3MiLCJ3ZWJwYWNrOi8vLi9zcmMvbGF5b3V0LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUNERSxhQUFBO0VBQ0EsZUFBQTtBRENGOztBQUdBO0VDT0ksWUFBQTtFQUNBLGNBQUE7RUFDQSxrQ0FBQTtFQUVGLHVCQUFBO0VBQ0EsYUFBQTtFQUNBLDhCQUFBO0VBQ0EsbUJBQUE7QURQRjtBQ1FFO0VBQ0UsZUFBQTtBRE5KOztBQU5BO0VBQ0UsZ0JBQUE7RUFDQSxpQkFBQTtFQUNBLHNCQUFBO0VBQ0Esa0NBQUE7QUFTRjs7QUFOQTtFQUNFLHlCQUFBO0FBU0Y7O0FBTkE7RUFDRSxhQUFBO0FBU0YiLCJzb3VyY2VzQ29udGVudCI6WyJAdXNlIFwiL3NyYy9sYXlvdXQuc2Nzc1wiIGFzIGxheW91dDtcblxuLmZsZXgtYm94IHtcbiAgQGluY2x1ZGUgbGF5b3V0LmZsZXgtYm94O1xufVxuXG4uZmxleC1pdGVtIHtcbiAgQGluY2x1ZGUgbGF5b3V0LmZsZXgtaXRlbTtcbn1cblxuLnRpcCB7XG4gIG1hcmdpbjogOHB4IDE2cHg7XG4gIHBhZGRpbmc6IDhweCAxNnB4O1xuICBib3JkZXItbGVmdDogNHB4IHNvbGlkO1xuICBjb2xvcjogIzAwMDAwMDUwO1xufVxuXG4uYWN0aW9ucyB7XG4gIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XG59XG5cbi5hY3Rpb24ge1xuICBtYXJnaW46IDAgOHB4O1xufVxuIiwiQG1peGluIGZsZXgtYm94IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xufVxuXG5AbWl4aW4gZmxleC1pdGVtKFxuICAkd2lkdGg6IDEwMCUsXG4gICRtYXJnaW4tdG9wOiAwcHgsXG4gICRtYXJnaW4tcmlnaHQ6IDBweCxcbiAgJG1hcmdpbi1ib3R0b206IDBweCxcbiAgJG1hcmdpbi1sZWZ0OiAwcHhcbikge1xuICBmbGV4OiB7XG4gICAgZ3JvdzogMDtcbiAgICBzaHJpbms6IDA7XG4gICAgYmFzaXM6IGNhbGMoJHdpZHRoIC0gJG1hcmdpbi1sZWZ0IC0gJG1hcmdpbi1yaWdodCk7XG4gIH1cbiAgbWFyZ2luOiAkbWFyZ2luLXRvcCAkbWFyZ2luLXJpZ2h0ICRtYXJnaW4tYm90dG9tICRtYXJnaW4tbGVmdDtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAubGFiZWwge1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICAvLyBmb250LXdlaWdodDogNjAwO1xuICB9XG4gIC8vIC5jb250cm9sIHtcbiAgLy8gICAvLyBtYXJnaW4tcmlnaHQ6IDE2cHg7XG4gIC8vIH1cbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */"]
 });
 
