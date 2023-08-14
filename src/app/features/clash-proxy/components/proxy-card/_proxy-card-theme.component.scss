@@ -1,5 +1,5 @@
-@use "@angular/material" as mat;
-@use "sass:map";
+@use '@angular/material' as mat;
+@use 'sass:map';
 
 @mixin theme($theme) {
   $primary: map.get($theme, primary);
@@ -11,8 +11,31 @@
   $nav-background-opacity: if($is-dark-theme, 0.2, 0.03);
 
   .proxy-card {
-    &:hover {
-      box-shadow: 0 0 8px 4px mat.get-color-from-palette($primary, 500);
+    &::after,
+    &::before {
+      position: absolute;
+      content: '';
+      width: 50%;
+      max-width: 300px;
+      height: 20%;
+      top: 70%;
+      transition: all 0.2s cubic-bezier(0.17, 0.84, 0.44, 1);
+      z-index: -1;
+    }
+
+    &::before {
+      transform: rotate(-4deg);
+      left: 14px;
+    }
+
+    &::after {
+      transform: rotate(4deg);
+      right: 14px;
+    }
+
+    &:hover::after,
+    &:hover::before {
+      box-shadow: 0 8px 12px 4px mat.get-color-from-palette($primary, 600);
     }
   }
 }

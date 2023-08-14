@@ -10,8 +10,7 @@
   $is-dark-theme: map.get($theme, is-dark);
   $nav-background-opacity: if($is-dark-theme, 0.2, 0.03);
 
-  .github-corner {
-    filter: drop-shadow(0 0 4px mat.get-color-from-palette($primary, 900));
-    // box-shadow: 0 0 8px 4px mat.get-color-from-palette($primary, 500);
+  .box  {
+    filter: drop-shadow(0 0 4px mat.get-color-from-palette($primary, 500));
   }
 }

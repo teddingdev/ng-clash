@@ -3,6 +3,7 @@
 @use "sass:map";
 @use "./app/app-theme.component";
 @use "./app/features/dashboard/dashboard-theme.component";
+@use "./app/core/components/loading/loading-theme.component";
 @use "./app/features/clash-proxy/clash-proxy-theme.component";
 @use "./app/features/clash-settings/components/settings/setting-theme.component";
 @use "./app/features/clash-proxy/components/proxy-card/proxy-card-theme.component";
@@ -19,6 +20,7 @@
 
   @include app-theme.theme($theme);
   @include setting-theme.theme($theme);
+  @include loading-theme.theme($theme);
   @include dashboard-theme.theme($theme);
   @include proxy-card-theme.theme($theme);
   @include proxy-group-theme.theme($theme);

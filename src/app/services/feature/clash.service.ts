@@ -1,24 +1,9 @@
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  map,
-  Observable,
-  shareReplay,
-  Subject,
-  switchMap,
-  Timestamp,
-} from 'rxjs';
+import { BehaviorSubject, map, Observable, shareReplay, Subject, switchMap } from 'rxjs';
 
 import { ClashApiService } from '../api/clash-api.service';
 
-import {
-  PolicyGroup,
-  PolicyGroupType,
-  Proxies,
-  ProxyProviders,
-  ProxyType,
-  Proxy,
-} from '@model';
+import { PolicyGroup, PolicyGroupType, ProxyProviders, ProxyType, Proxy } from '@model';
 
 @Injectable({
   providedIn: 'root',
@@ -38,13 +23,12 @@ export class ClashService {
    * @param timestamp 时间戳
    */
   fetch(timestamp: string) {
+    // ^?
     this.fetchAction$.next(timestamp);
   }
 
   fetchProviders() {
-    return this.clashApiService
-      .fetchProvideMap()
-      .pipe(map((res) => res.providers));
+    return this.clashApiService.fetchProvideMap().pipe(map((res) => res.providers));
   }
 
   putProxy(proxyName: string, policyName: string) {
@@ -63,9 +47,7 @@ export class ClashService {
             const policyGroups = Object.values(list).filter((p) =>
               Object.values(PolicyGroupType).find((q) => q === p.type)
             ) as PolicyGroup[];
-            const global = Object.values(list).filter(
-              (p) => p.name === 'GLOBAL'
-            );
+            const global = Object.values(list).filter((p) => p.name === 'GLOBAL');
             return { proxies, policyGroups, global };
           })
         );
