@@ -466,6 +466,7 @@ class ClashService {
    * @param timestamp 时间戳
    */
   fetch(timestamp) {
+    // ^?
     this.fetchAction$.next(timestamp);
   }
   fetchProviders() {
