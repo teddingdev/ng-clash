@@ -6,16 +6,10 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 
 import { SysLogComponent } from './components/sys-log/sys-log.component';
 import { RouteReuseStrategy } from '@angular/router';
-import { CustomRouteReuseStrategy } from 'src/app/services/feature/custom-route-reuse-strategy';
 
 @NgModule({
   declarations: [SysLogComponent],
   imports: [CommonModule, ClashLogsRoutingModule, MaterialModule],
-  providers: [
-    {
-      provide: RouteReuseStrategy,
-      useClass: CustomRouteReuseStrategy,
-    },
-  ],
+  providers: [],
 })
 export class ClashLogsModule {}

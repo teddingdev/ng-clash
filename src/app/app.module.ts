@@ -1,14 +1,12 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { httpInterceptorProviders } from './interceptors';
-import { RouteReuseStrategy } from '@angular/router';
-import { CustomRouteReuseStrategy } from './services/feature/custom-route-reuse-strategy';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,10 +18,7 @@ import { CustomRouteReuseStrategy } from './services/feature/custom-route-reuse-
   ],
   providers: [
     httpInterceptorProviders,
-    {
-      provide: RouteReuseStrategy,
-      useClass: CustomRouteReuseStrategy,
-    },
+    provideClientHydration(),
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
