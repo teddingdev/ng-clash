@@ -4,6 +4,8 @@ on:
   push:
     branches: [master]
     paths-ignore: [.github/workflows/**]
+  workflow_dispatch:
+    branches: [master]
 
 env:
   PROJECT_NAME: ng-clash
@@ -50,7 +52,7 @@ jobs:
 
       - name: Copy Files
         run: |
-          cp -r ./${{ env.BRANCH_SOURCE }}/dist/${{ env.PROJECT_NAME }}/* ./${{ env.BRANCH_GITHUB_PAGES }}
+          cp -r ./${{ env.BRANCH_SOURCE }}/dist/${{ env.PROJECT_NAME }}/browser/* ./${{ env.BRANCH_GITHUB_PAGES }}
           cp ./${{ env.BRANCH_SOURCE }}/.gitignore ./${{ env.BRANCH_GITHUB_PAGES }}
           date +%Y-%m-%d\ %H:%M:%S\ %z > ./${{ env.BRANCH_GITHUB_PAGES }}/generated.txt
           ls -al ./${{ env.BRANCH_GITHUB_PAGES }}
