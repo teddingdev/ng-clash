@@ -12,7 +12,8 @@ export class HostService {
     let cachedHostname: string | undefined;
     let cachedPort: string | undefined;
     let cachedKey: string | undefined;
-    const cachedConfig = localStorage.getItem('ngClash');
+    // const cachedConfig = localStorage.getItem('ngClash');
+    const cachedConfig = null;
     if (cachedConfig) {
       const ngClashConfig = JSON.parse(cachedConfig);
       const externalControl = ngClashConfig['externalControl'] ?? {};
@@ -31,10 +32,10 @@ export class HostService {
     if (null) {
       return;
     }
-    const cachedConfig = localStorage.getItem('ngClash') ?? '{}';
-    const ngClashConfig = JSON.parse(cachedConfig);
+    // const cachedConfig = localStorage.getItem('ngClash') ?? '{}';
+    const ngClashConfig = JSON.parse('');
     ngClashConfig['externalControl'] = externalControl;
-    localStorage.setItem('ngClash', JSON.stringify(ngClashConfig));
+    // localStorage.setItem('ngClash', JSON.stringify(ngClashConfig));
   }
 
   get host() {

@@ -2,14 +2,17 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Inject,
   OnDestroy,
   OnInit,
+  PLATFORM_ID,
 } from '@angular/core';
 import { ClashApiService } from '@service';
 import { PolicyGroup, ProxiesProvider, Proxy } from '@model';
 import { ClashService } from 'src/app/services/feature/clash.service';
 import { Observable, Subject, catchError, map, of, takeUntil, tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isPlatformBrowser } from '@angular/common';
 
 type ViewModel = 'grid_view' | 'view_list';
 
@@ -20,10 +23,10 @@ type ViewModel = 'grid_view' | 'view_list';
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClashProxyComponent implements OnInit, OnDestroy {
-  providers$: Observable<Record<string, ProxiesProvider> | null>;
-  global$: Observable<(Proxy | PolicyGroup)[] | null>;
-  proxies$: Observable<Proxy[] | null>;
-  policyGroups$: Observable<PolicyGroup[] | null>;
+  providers$: Observable<Record<string, ProxiesProvider>> | null = null;
+  global$: Observable<(Proxy | PolicyGroup)[]> | null = null;
+  proxies$: Observable<Proxy[]> | null = null;
+  policyGroups$: Observable<PolicyGroup[]> | null = null;
 
   viewModel: ViewModel = 'grid_view';
 
@@ -60,35 +63,38 @@ export class ClashProxyComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     this.stop$.next('stop');
   }
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private _snackBar: MatSnackBar,
     // private ref: ChangeDetectorRef,
     private clashService: ClashService
   ) {
-    this.proxies$ = this.clashService.proxies$.pipe(
-      map((data) => data.proxies),
-      catchError(() => {
-        return of([]);
-      })
-    );
-    this.global$ = this.clashService.proxies$.pipe(
-      map((data) => data.global),
-      catchError(() => {
-        return of([]);
-      })
-    );
-    this.policyGroups$ = this.clashService.proxies$.pipe(
-      map((data) => data.policyGroups),
-      catchError(() => {
-        return of([]);
-      })
-    );
-    this.providers$ = this.clashService.fetchProviders();
+    if (isPlatformBrowser(this.platformId)) {
+      this.proxies$ = this.clashService.proxies$.pipe(
+        map((data) => data.proxies),
+        catchError(() => {
+          return of([]);
+        })
+      );
+      this.global$ = this.clashService.proxies$.pipe(
+        map((data) => data.global),
+        catchError(() => {
+          return of([]);
+        })
+      );
+      this.policyGroups$ = this.clashService.proxies$.pipe(
+        map((data) => data.policyGroups),
+        catchError(() => {
+          return of([]);
+        })
+      );
+      this.providers$ = this.clashService.fetchProviders();
+    }
   }
 }

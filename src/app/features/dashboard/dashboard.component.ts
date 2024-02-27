@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Nav, NavValue } from '../../models/feature/menu.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LogService } from '../../services/feature/log.service';
@@ -44,8 +45,7 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  'githubPages' =
-    'https://github.com/teddingdev/ng-clash/actions/workflows/github-pages.yml/badge.svg';
+  'githubPages' = 'https://github.com/teddingdev/ng-clash/actions/workflows/github-pages.yml/badge.svg';
   'pagesBuildDeployment' =
     'https://github.com/teddingdev/ng-clash/actions/workflows/pages/pages-build-deployment/badge.svg';
 
@@ -55,20 +55,14 @@ export class DashboardComponent implements OnInit {
   } | null = null;
 
   handleSideNavActive(menu: Nav) {
-    this.navList = this.toggleSideNavActiveStatus(
-      this.navList,
-      (menuItem) => menuItem.value === menu.value
-    );
+    this.navList = this.toggleSideNavActiveStatus(this.navList, (menuItem) => menuItem.value === menu.value);
     this.router.navigate([menu.value], {
       relativeTo: this.route,
     });
   }
 
   /** toggle sideNav highlight */
-  toggleSideNavActiveStatus(
-    menuList: Nav[],
-    compareFn: (menuItem: Nav) => boolean
-  ) {
+  toggleSideNavActiveStatus(menuList: Nav[], compareFn: (menuItem: Nav) => boolean) {
     return menuList.map((menuItem) => {
       if (compareFn(menuItem)) {
         menuItem.activated = true;
@@ -80,20 +74,25 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.navList = this.toggleSideNavActiveStatus(this.navList, (menuItem) =>
-      location.pathname.includes(menuItem.value)
-    );
+    if (isPlatformBrowser(this.platformId)) {
+      this.navList = this.toggleSideNavActiveStatus(this.navList, (menuItem) =>
+        location.pathname.includes(menuItem.value)
+      );
+    }
 
     // todo 获取日志
-    this.logService.initLog();
+    if (isPlatformBrowser(this.platformId)) {
+      this.logService.initLog();
+    }
     this.connectionService.initConnection();
     // 获取版本号
-    this.storeService.clashVersion$.subscribe(
-      (data) => (this.clashVersion = data)
-    );
+    if (isPlatformBrowser(this.platformId)) {
+      this.storeService.clashVersion$.subscribe((data) => (this.clashVersion = data));
+    }
   }
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
     private route: ActivatedRoute,
     private logService: LogService,

@@ -39,8 +39,7 @@ export class ClashService {
     this.proxies$ = this.fetchAction$.pipe(
       switchMap(() => {
         return this.clashApiService.fetchProxyMap().pipe(
-          map((res) => res.proxies),
-          map((list) => {
+          map(({ proxies: list }) => {
             const proxies = Object.values(list).filter((p) =>
               Object.values(ProxyType).find((q) => q === p.type)
             ) as Proxy[];

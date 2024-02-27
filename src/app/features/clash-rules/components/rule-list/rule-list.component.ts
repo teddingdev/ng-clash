@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Rule } from '@model';
 import { ClashApiService } from '@service';
 
@@ -9,10 +10,12 @@ import { ClashApiService } from '@service';
 })
 export class RuleListComponent implements OnInit {
   rules: Rule[] = [];
-  constructor(private clashApiService: ClashApiService) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private clashApiService: ClashApiService) {}
   ngOnInit(): void {
-    this.clashApiService.fetchRules().subscribe((res) => {
-      this.rules = res.rules;
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      this.clashApiService.fetchRules().subscribe((res) => {
+        this.rules = res.rules;
+      });
+    }
   }
 }

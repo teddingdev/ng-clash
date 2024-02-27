@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Subject, catchError, map, of, scan } from 'rxjs';
 import { WebsocketService } from '../core/websocket/websocket.service';
 import { HostService } from '../api/host.service';
 import { Log } from '@model';
+import { isPlatformBrowser } from '@angular/common';
 
 enum WSType {
   'debug',
@@ -85,7 +86,9 @@ export class LogService {
       });
   }
 
-  constructor(private hostService: HostService) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private hostService: HostService) {
     const host = this.hostService.host;
     const port = this.hostService.port;
 
@@ -93,35 +96,37 @@ export class LogService {
     const warnUrl = `ws://${host}:${port}/logs?level=warn`;
     const debugUrl = `ws://${host}:${port}/logs?level=debug`;
     const errorUrl = `ws://${host}:${port}/logs?level=error`;
+    if (isPlatformBrowser(platformId)) {
+      const wsDebug = new WebsocketService({
+        url: debugUrl,
+        onmessage: (event) => {
+          this.debug$.next(event.data);
+        },
+      });
+      const wsInfo = new WebsocketService({
+        url: infoUrl,
+        onmessage: (event) => {
+          this.info$.next(event.data);
+        },
+      });
+      const wsWarn = new WebsocketService({
+        url: warnUrl,
+        onmessage: (event) => {
+          this.warn$.next(event.data);
+        },
+      });
+      const wsErrorUrl = new WebsocketService({
+        url: errorUrl,
+        onmessage: (event) => {
+          this.error$.next(event.data);
+        },
+      });
 
-    const wsDebug = new WebsocketService({
-      url: debugUrl,
-      onmessage: (event) => {
-        this.debug$.next(event.data);
-      },
-    });
-    const wsInfo = new WebsocketService({
-      url: infoUrl,
-      onmessage: (event) => {
-        this.info$.next(event.data);
-      },
-    });
-    const wsWarn = new WebsocketService({
-      url: warnUrl,
-      onmessage: (event) => {
-        this.warn$.next(event.data);
-      },
-    });
-    const wsErrorUrl = new WebsocketService({
-      url: errorUrl,
-      onmessage: (event) => {
-        this.error$.next(event.data);
-      },
-    });
+      wsDebug.connected();
+      wsInfo.connected();
+      wsWarn.connected();
+      wsErrorUrl.connected();
+    }
 
-    wsDebug.connected();
-    wsInfo.connected();
-    wsWarn.connected();
-    wsErrorUrl.connected();
   }
 }
