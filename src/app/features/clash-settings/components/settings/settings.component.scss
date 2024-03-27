@@ -1,4 +1,10 @@
-@use "/src/layout.scss";
+@use '@angular/material' as mat;
+@use '/src/layout.scss';
+@use '/src/theme';
+@use 'sass:map';
+
+$primary-light: map.get(theme.$light-theme, primary);
+$primary-dark: map.get(theme.$dark-theme, primary);
 
 .flex-box {
   @include layout.flex-box;
@@ -12,6 +18,10 @@
   font-size: 16px;
   cursor: pointer;
   text-decoration: underline;
+  color: mat.get-color-from-palette($primary-light, 300);
+  @media (prefers-color-scheme: dark) {
+    color: mat.get-color-from-palette($primary-dark, 300);
+  }
 }
 
 .save {

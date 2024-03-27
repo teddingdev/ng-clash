@@ -1,66 +1,15 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use "@angular/material" as mat;
-// Plus imports for other components in your app.
-@use "./app-theme";
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$ng-clash-primary: mat.define-palette(mat.$indigo-palette);
-$ng-clash-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$ng-clash-warn: mat.define-palette(mat.$red-palette);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$ng-clash-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $ng-clash-primary,
-      accent: $ng-clash-accent,
-      warn: $ng-clash-warn,
-    ),
-  )
-);
-
-// Include theme styles for shared and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-// @include mat.all-component-themes($ng-clash-theme)
-@include mat.fab_theme($ng-clash-theme);
-@include mat.core_theme($ng-clash-theme);
-@include mat.card_theme($ng-clash-theme);
-@include mat.tabs_theme($ng-clash-theme);
-@include mat.list_theme($ng-clash-theme);
-@include mat.chips_theme($ng-clash-theme);
-@include mat.badge_theme($ng-clash-theme);
-@include mat.input_theme($ng-clash-theme);
-@include mat.button_theme($ng-clash-theme);
-@include mat.dialog_theme($ng-clash-theme);
-@include mat.toolbar_theme($ng-clash-theme);
-@include mat.sidenav_theme($ng-clash-theme);
-@include mat.grid-list_theme($ng-clash-theme);
-@include mat.expansion_theme($ng-clash-theme);
-@include mat.snack_bar-theme($ng-clash-theme);
-@include mat.form_field_theme($ng-clash-theme);
-@include mat.slide_toggle_theme($ng-clash-theme);
-@include mat.button_toggle_theme($ng-clash-theme);
+@use '@angular/material' as mat;
+@use './define-mat-theme';
 
 /* You can add global styles to this file, and also import other style files */
-@include app-theme.theme($ng-clash-theme);
 
-@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
 
 html,
 body {
   height: 100%;
   margin: 0;
-  font-family: "Varela Round", Roboto, "Helvetica Neue", sans-serif,
-    "Hiragino Sans GB", "PingFang SC";
+  font-family: 'Varela Round', Roboto, 'Helvetica Neue', sans-serif, 'Hiragino Sans GB', 'PingFang SC';
 }

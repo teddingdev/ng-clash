@@ -1,9 +1,20 @@
+@use '@angular/material' as mat;
+@use '/src/theme';
+@use 'sass:map';
+
+$primary-light: map.get(theme.$light-theme, primary);
+$primary-dark: map.get(theme.$dark-theme, primary);
+
 .github-corner {
-  position: absolute;
   top: 8px;
   right: 8px;
   z-index: 9999;
   color: #fff;
+  position: absolute;
+  filter: drop-shadow(0 0 4px mat.get-color-from-palette($primary-light, 900));
+  @media (prefers-color-scheme: dark) {
+    filter: drop-shadow(0 0 4px mat.get-color-from-palette($primary-dark, 900));
+  }
 }
 
 .github-logo {

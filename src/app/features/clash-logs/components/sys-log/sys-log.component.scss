@@ -1,13 +1,21 @@
+@use '@angular/material' as mat;
+@use '/src/theme';
+@use 'sass:map';
+
+$primary-light: map.get(theme.$light-theme, primary);
+$primary-dark: map.get(theme.$dark-theme, primary);
+
 .log {
   display: flex;
-  color: #000000B0;
-  border-bottom: 1px dotted #000000B0;
   padding: 8px 0;
 
   &-type {
     display: flex;
     flex: 0 0 auto;
-    color: #3f51b5;
+    color: mat.get-color-from-palette($primary-light);
+    @media (prefers-color-scheme: dark) {
+      color: mat.get-color-from-palette($primary-dark);
+    }
     align-items: center;
   }
 

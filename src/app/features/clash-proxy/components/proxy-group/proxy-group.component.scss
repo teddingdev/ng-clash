@@ -1,9 +1,15 @@
+@use '@angular/material' as mat;
+@use '/src/theme';
+@use 'sass:map';
+
+$accent-light: map.get(theme.$light-theme, accent);
+$accent-dark: map.get(theme.$dark-theme, accent);
+
 .title {
   display: flex;
 }
 
 .policy-name {
-  // font-weight: 500;
   flex: 1 0 auto;
 }
 
@@ -19,6 +25,11 @@
     text-align: center;
     font-size: 14px;
     overflow: hidden;
+    color: #fff;
+    background-color: mat.get-color-from-palette($accent-light, 300);
+    @media (prefers-color-scheme: dark) {
+      background-color: mat.get-color-from-palette($accent-dark, 300);
+    }
   }
   flex: 0 0 calc($width * 3);
 }

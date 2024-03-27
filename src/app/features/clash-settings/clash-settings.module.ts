@@ -7,6 +7,7 @@ import { ClashSettingsRoutingModule } from './clash-settings-routing.module';
 import { ClashSettingsComponent } from './clash-settings.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SettingsControlComponent } from './components/settings-control/settings-control.component';
+import { MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [SettingsComponent, SettingsControlComponent, ClashSettingsComponent],
@@ -16,6 +17,10 @@ import { SettingsControlComponent } from './components/settings-control/settings
     ReactiveFormsModule,
     ClashSettingsRoutingModule,
     MaterialModule,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogTitle,
+    MatDialogContent,
   ],
 })
 export class ClashSettingsModule {}

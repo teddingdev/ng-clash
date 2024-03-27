@@ -1,4 +1,10 @@
+@use '@angular/material' as mat;
 @use '/src/animate';
+@use '/src/theme';
+@use 'sass:map';
+
+$primary-light: map.get(theme.$light-theme, primary);
+$primary-dark: map.get(theme.$dark-theme, primary);
 
 .box {
   margin: 4px;
@@ -7,6 +13,10 @@
   position: relative;
   z-index: 99;
   box-sizing: border-box;
+  filter: drop-shadow(0 0 4px mat.get-color-from-palette($primary-light, 500));
+  @media (prefers-color-scheme: dark) {
+    filter: drop-shadow(0 0 4px mat.get-color-from-palette($primary-dark, 500));
+  }
 
   &:before,
   &:after {

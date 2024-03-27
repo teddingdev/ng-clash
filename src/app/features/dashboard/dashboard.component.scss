@@ -1,3 +1,10 @@
+@use '@angular/material' as mat;
+@use '/src/theme';
+@use 'sass:map';
+
+$primary-light: map.get(theme.$light-theme, primary);
+$primary-dark: map.get(theme.$dark-theme, primary);
+
 .app-extra {
   flex: 1;
   display: flex;
@@ -9,6 +16,10 @@
     margin-bottom: 8px;
     line-height: 28px;
     font-size: 14px;
+    color: mat.get-color-from-palette($primary-light);
+    @media (prefers-color-scheme: dark) {
+      color: mat.get-color-from-palette($primary-dark);
+    }
   }
   .CI-status {
     margin-bottom: 8px;

@@ -1,3 +1,10 @@
+@use '@angular/material' as mat;
+@use '/src/theme';
+@use 'sass:map';
+
+$primary-light: map.get(theme.$light-theme, primary);
+$primary-dark: map.get(theme.$dark-theme, primary);
+
 .proxy-card-wrap {
   box-sizing: border-box;
   display: flex;
@@ -18,6 +25,36 @@
   }
   &:hover {
     top: -4px;
+  }
+
+  &::after,
+  &::before {
+    position: absolute;
+    content: '';
+    width: 50%;
+    max-width: 300px;
+    height: 20%;
+    top: 70%;
+    transition: all 0.2s cubic-bezier(0.17, 0.84, 0.44, 1);
+    z-index: -1;
+  }
+
+  &::before {
+    transform: rotate(-4deg);
+    left: 14px;
+  }
+
+  &::after {
+    transform: rotate(4deg);
+    right: 14px;
+  }
+
+  &:hover::after,
+  &:hover::before {
+    box-shadow: 0 8px 12px 4px mat.get-color-from-palette($primary-light, 600);
+    @media (prefers-color-scheme: dark) {
+      box-shadow: 0 8px 12px 4px mat.get-color-from-palette($primary-dark, 600);
+    }
   }
 }
 

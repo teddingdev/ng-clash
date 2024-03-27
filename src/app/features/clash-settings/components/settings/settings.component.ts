@@ -1,13 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ClashApiService } from '@service';
 
 import { ClashMode, Config, ExternalControlConfig } from '@model';
 import { SettingsControlComponent } from '../settings-control/settings-control.component';
-import { StoreService } from 'src/app/services/core/store/store.service';
 import { filter } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { KeyValue } from '@angular/common';
@@ -57,14 +55,13 @@ export class SettingsComponent implements OnInit {
   change = new EventEmitter();
 
   openDialog() {
-    const dialogRef = this.dialog.open<
+    const dialogRef = this.dialog.open<SettingsControlComponent, ExternalControlConfig | null, ExternalControlConfig>(
       SettingsControlComponent,
-      ExternalControlConfig | null,
-      ExternalControlConfig
-    >(SettingsControlComponent, {
-      width: '600px',
-      data: this.externalControlConfig,
-    });
+      {
+        width: '600px',
+        data: this.externalControlConfig,
+      }
+    );
     dialogRef
       .afterClosed()
       .pipe(filter(isNonNullable))
@@ -98,10 +95,7 @@ export class SettingsComponent implements OnInit {
       });
   }
 
-  KVCompareFn<K extends string, V extends string>(
-    a: KeyValue<K, V>,
-    b: KeyValue<K, V>
-  ): number {
+  KVCompareFn<K extends string, V extends string>(a: KeyValue<K, V>, b: KeyValue<K, V>): number {
     return 0;
   }
 
@@ -109,7 +103,7 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private hostService: HostService,
     private clashApiService: ClashApiService

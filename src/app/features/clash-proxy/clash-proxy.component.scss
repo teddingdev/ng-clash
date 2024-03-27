@@ -1,3 +1,10 @@
+@use '@angular/material' as mat;
+@use '/src/theme';
+@use 'sass:map';
+
+$primary-light: map.get(theme.$light-theme, primary);
+$primary-dark: map.get(theme.$dark-theme, primary);
+
 .container {
   width: 100%;
   height: 100%;
@@ -6,10 +13,13 @@
 .head {
   margin: 16px 4px;
   font-size: 24px;
-  // font-weight: bold;
   height: 32px;
   line-height: 32px;
   display: flex;
+  color: mat.get-color-from-palette($primary-light);
+  @media (prefers-color-scheme: dark) {
+    color: mat.get-color-from-palette($primary-dark);
+  }
   &-right,
   &-left {
     flex: 1 auto;
